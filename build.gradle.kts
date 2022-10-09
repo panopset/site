@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "com.panopset"
-version = "0.0.1-SNAPSHOT"
+version = "1.1"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 configurations {
@@ -42,4 +42,10 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+tasks {
+	bootJar {
+		archiveFileName.set("site.jar")
+	}
 }
