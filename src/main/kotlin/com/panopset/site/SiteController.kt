@@ -26,7 +26,7 @@ class SiteController(private val config: Config) {
     private fun init(model: Model) {
         model.addAttribute("foo", "bar")
         model.addAttribute("env", config.env)
-        model.addAttribute("redis_url", System.getenv().get("PANOPSET_SITE_REDIS_URL"))
-        model.addAttribute("redis_pwd", System.getenv().get("PANOPSET_SITE_REDIS_PWD"))
+        model.addAttribute("redis_url", REDIS_URL)
+        model.addAttribute("redis_pwd", REDIS_PWD)
     }
 }
