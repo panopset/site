@@ -1,12 +1,45 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Panopset</title>
+    <title>Denebola</title>
+    <link rel="stylesheet" href="../static/css/site.css" th:href="'/css/site.css'" type="text/css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../static/js/snap.svg-min.js" th:src="'/js/snap.svg-min.js'"></script>
+    <script src="../static/js/isalive.js" th:src="'/js/isalive.js'"></script>
 </head>
 <body>
-<h1>Hello World!</h1>
- <p th:text="'Variable substitution demo, foo is ' + ${foo}"></p>
- <p th:text="'Redis URL is ' + ${redis_url}"></p>
- <p th:text="'Environment is ' + ${env}"></p>
+
+<p>
+    <a href="./index.html" th:href="'/'">Home</a> ~
+    <a href="./hsl.html" th:href="'/hsl'">High Score List</a> ~
+    <a href="./config.html" th:href="'/config'">Configuration</a>
+</p>
+
+ <script>
+
+var s = Snap(1000, 600);
+var c1 = s.circle(30, 30, 30);
+//var c0 = s.circle(240, 50, 50);
+var c0 = createOrb(s,240,50,50);
+
+c0.circle.attr({
+  fill: "#ff0",
+  stroke: "#f00",
+  strokeWidth: 1
+});
+
+c0.circle.mouseover(function() {reportMouseOver(c0)});
+
+
+c1.attr({
+ fill: "#cff"
+});
+
+
+
+
+
+</script>
+
 </body>
 </html>

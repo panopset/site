@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Denebola Configuration</title>
+    <link rel="stylesheet" href="../static/css/site.css" th:href="'/css/site.css'" type="text/css"/>
+</head>
+<body>
+<p>
+    <a href="./index.html" th:href="'/'">Home</a> ~
+    <a href="./hsl.html" th:href="'/hsl'">High Score List</a> ~
+    <a href="./config.html" th:href="'/config'">Configuration</a>
+</p>
+
+<h1>Denebola Configuration</h1>
+
+
+
+<p th:text="'Variable substitution demo, foo is ' + ${foo}">zonk</p>
+<p th:text="'Redis instance is ' + ${redis_url} + '.'"></p>
+<p th:text="'Environment is ' + ${env} + '.'"></p>
+
+<h2>Server</h2>
+<table>
+<tr th:each="instance : ${svr}">
+    <td th:text="${instance.key}">keyvalue</td>
+    <td th:text="${instance.value}">value</td>
+</tr>
+</table>
+
+<h2>Source</h2>
+<p>Denebola is <a href="https://github.com/panopset/denebola">open source</a>.</p>
+<h2>Stack</h2>
+
+<ul>
+    <li>Hosted on <a href="https://digitalocean.com">digitalocean</a>.</li>
+    <li>Model
+        <ul>
+            <li> <a href="https://kotlinlang.org/">kotlin</a> and <a href="https://openjdk.org/">java</a>.</li>
+            <li> <a href="https:/spring.io">spring</a>.</li>
+        </ul>
+    </li>
+    <li>View
+    <ul>
+        <li> <a href="https://www.thymeleaf.org/">thymeleaf</a>.</li>
+        <li><a href="https://en.wikipedia.org/wiki/HTML">html</a> and <a href="https://www.w3.org/Style/CSS/Overview.en.html">css</a>.</li>
+        <li><a href="https://jquery.com/">jQuery</a> and <a href="https://en.wikipedia.org/wiki/Ajax_(programming)">ajax</a>.</li>
+        <li><a href="http://snapsvg.io/">snap</a> and <a href="https://www.javascript.com/">javascript</a>.</li>
+    </ul>
+</li>
+    <li><a href="https://redis.com">Redis</a> database.</li>
+</ul>
+
+
+</body>
+</html>
