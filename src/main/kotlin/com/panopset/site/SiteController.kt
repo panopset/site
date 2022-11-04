@@ -7,48 +7,17 @@ import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
-import redis.clients.jedis.JedisPool
-import redis.clients.jedis.JedisPoolConfig
 import java.util.*
 import javax.servlet.http.HttpServletResponse
 import kotlin.collections.HashMap
 
 @Controller
-class SiteController(private val config: Config) {
-
-    companion object {
-        var jedisPool: JedisPool
-        val poolConfig = JedisPoolConfig()
-
-        init {
-            poolConfig.maxIdle = 20
-            poolConfig.minIdle = 1
-            if (REDIS_URL == null) {
-                throw RuntimeException(failedEnvMessage())
-            }
-            if (REDIS_PWD == null) {
-                throw RuntimeException(failedEnvMessage())
-            }
-            val i = REDIS_URL.lastIndexOf(":")
-            val url0 = REDIS_URL
-            var host = url0
-            var port = 6379
-            if (i > 7) {
-                host = url0.substring(0, i)
-                val port0 = url0.substring(i + 1)
-                port = port0.toInt()
-            }
-            if (host.isBlank()) {
-                throw RuntimeException(failedEnvMessage())
-            }
-            jedisPool = JedisPool(poolConfig, host, port, 3000, REDIS_PWD)
-        }
-    }
+class SiteController(private val config: Config, private val panBase: PanBase) {
 
     @GetMapping(*["/", "/home", "/index", "/index.htm", "/index.html"])
     fun home(model: Model?, response: HttpServletResponse?): String? {
         if (model != null) {
-            init(model)
+            panInit(model)
         }
         return "index"
     }
@@ -56,7 +25,7 @@ class SiteController(private val config: Config) {
     @GetMapping("/hsl")
     fun highScoreList(model: Model?, response: HttpServletResponse?): String? {
         if (model != null) {
-            init(model)
+            panInit(model)
         }
         return "hsl"
     }
@@ -64,7 +33,7 @@ class SiteController(private val config: Config) {
     @GetMapping("/config")
     fun config(model: Model?, response: HttpServletResponse?): String? {
         if (model != null) {
-            init(model)
+            panInit(model)
             val map = HashMap<String, String>()
             map["Runtime"] = System.getProperty("java.version")
             map["VM name"] = System.getProperty("java.vm.name")
@@ -76,6 +45,14 @@ class SiteController(private val config: Config) {
             map["OS Arch"] = System.getProperty("os.arch")
             map["OS Name"] = System.getProperty("os.name")
             map["OS Version"] = System.getProperty("os.version")
+
+            // TODO: above one time?
+            panBase.rc.put("foo", "bar") // maybe...
+            val errorMsg = panBase.rc.getError()
+            if (errorMsg.isNotEmpty()) {
+                map["error"] = errorMsg
+            }
+
             model.addAttribute("svr", map)
         }
         return "config"
@@ -91,9 +68,8 @@ class SiteController(private val config: Config) {
 
     @PostMapping("/ajaxGetTarget")
     fun getResult(@RequestBody tronk: Tronk, response: HttpServletResponse?): ResponseEntity<String?>? {
-        val jedis = jedisPool.resource
         if (tronk.id.isNotBlank()) {
-            val jsonString = jedis.get(tronk.id)
+            val jsonString = panBase.rc.get(tronk.id)
             if (jsonString.isNotBlank()) {
                 val newTronk = Gson().fromJson(jsonString, Tronk::class.java)
                 // TODO: make whatever adjustments to existing
@@ -105,11 +81,11 @@ class SiteController(private val config: Config) {
         val newFill = "#$random3hex"
         tronk.fill = newFill
         val tronkJson = Gson().toJson(tronk)
-        jedis.setex(tronk.id, 604800, tronkJson)
+        panBase.rc.put(tronk.id, tronkJson)
         return ResponseEntity.ok(tronkJson)
     }
 
-    private fun init(model: Model) {
+    private fun panInit(model: Model) {
         model.addAttribute("foo", "bar")
         model.addAttribute("env", config.env)
         model.addAttribute("redis_url", REDIS_URL)
