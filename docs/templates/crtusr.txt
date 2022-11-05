@@ -1,0 +1,8 @@
+# https://stackoverflow.com/questions/2150882
+${@f crtusr.sh}adduser --gecos "" --disabled-password ${PANOPSET_SITE_USR}
+chpasswd <<<"${PANOPSET_SITE_USR}:${PANOPSET_SITE_PWD}"
+usermod -aG sudo ${PANOPSET_SITE_USR}
+rsync --archive --chown=${PANOPSET_SITE_USR}:${PANOPSET_SITE_USR} ~/.ssh /home/${PANOPSET_SITE_USR}
+chown -R ${PANOPSET_SITE_USR}:${PANOPSET_SITE_USR} /home/karl
+chown -R ${PANOPSET_SITE_USR}:${PANOPSET_SITE_USR} /var/www
+ls /home/${PAN_USR}/.ssh

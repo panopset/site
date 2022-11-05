@@ -2,10 +2,12 @@
 
 Panopset site source code.
 
-# Deployment Requirements
+# [Deploy](docs/deploy.md)ment Requirements
 
 Requirements for the server that site.jar is deployed on.
 ## Environment Variables
+
+Self-explanatory names:
 
 * PANOPSET_SITE_REDIS_URL
 * PANOPSET_SITE_REDIS_PWD
@@ -14,6 +16,16 @@ Requirements for the server that site.jar is deployed on.
 
 * Java 17
 * Kotlin
+
+## Environment Variables
+
+Same as server environment variables, and also these, also self-explanatory:
+
+* PANOPSET_SITE_IP
+* PANOPSET_SITE_NAME
+* PANOPSET_SITE_USR
+* PANOPSET_SITE_PWD
+
 
 ## Build Requirements
 

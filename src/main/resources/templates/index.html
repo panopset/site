@@ -15,6 +15,13 @@
     <a href="./config.html" th:href="'/config'">Configuration</a>
 </p>
 
+<div th:if= "${error != ''}">
+    <h1 th:text="'Error: '${error}">error</h1>
+    <p>
+        Please check server config.
+    </p>
+</div>
+
  <script>
 
 var s = Snap(1000, 600);
