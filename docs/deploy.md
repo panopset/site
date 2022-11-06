@@ -20,11 +20,13 @@ Create a digitalocean server with this initialization script (under Advanced Opt
     echo Droplet: $HOSTNAME, IP Address: $PUBLIC_IPV4 > /usr/share/nginx/html/index.html
 
 
-Optional, if you want to hit 8080 directly, also include:
+Optional, if you want to hit 8081 directly, also include:
 
 
-    ufw allow 8080
+    ufw allow 8081
 
+
+Update src/main/resources/application.properties to change the port.
 
 ... but normally you'd proxy it, here are some good articles about how to do that:
 
