@@ -6,14 +6,8 @@ Panopset site source code.
 # Development PC Requirements
 
 
-Panopset recommends doing your web development on a Linux system.
+Tested on a recent Linux mint system.
 
-These instructions will likely have to be extensively modified on Windows systems, but should work okay on macs.
-
-Recommended ide is intellij.  I loved eclipse, but it just couldn't keep up with Kotlin I guess. You'll need:
-
-* Java 17
-* Kotlin
 
 ## Environment Variables
 
@@ -27,6 +21,8 @@ Names should be self-explanatory:
 * PANOPSET_SITE_REDIS_PWD
 
 ## Build Requirements
+
+* Java 17
 
 This project maintains (for now) both gradle and maven build configurations.
 
