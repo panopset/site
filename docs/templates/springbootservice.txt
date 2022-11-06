@@ -11,5 +11,5 @@ EnvironmentFile=/etc/panopsetweb/panopsetweb.conf
 [Install]
 WantedBy=multi-user.target
 
-${@f installservice.sh}sudo mv web.service /etc/systemd/system/
-sudo systemctl enable web
+${@f installservice.sh}sudo mv panopsetweb.service /etc/systemd/system/
+sudo systemctl enable panopsetweb

@@ -39,7 +39,6 @@ out/
 ### Maven ###
 target
 
-### Eclipse ###
-.project
-.classpath
-.settings
+### Panopset ###
+temp
+
