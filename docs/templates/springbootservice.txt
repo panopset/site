@@ -1,0 +1,15 @@
+${@f panopsetweb.service}[Unit]
+Description=Panopset springboot web service, runs ~/site.jar on port 8080.
+
+[Service]
+User=${PANOPSET_SITE_USR}
+Type=simple
+ExecStart=/usr/bin/java -jar /home/${PANOPSET_SITE_USR}/site.jar --spring.profiles.active=prod
+SuccessExitStatus=143
+EnvironmentFile=/etc/panopsetweb/panopsetweb.conf
+
+[Install]
+WantedBy=multi-user.target
+
+${@f installservice.sh}sudo mv web.service /etc/systemd/system/
+sudo systemctl enable web

@@ -20,6 +20,6 @@ fi
 
 # Create the adduser.sh command for your new server
 
-java -cp ~/panopset.jar -D$PANOPSET_SITE_USER=${$PANOPSET_SITE_USER} -D$PANOPSET_SITE_PWD=${$PANOPSET_SITE_PWD} com.panopset.flywheel.Flywheel ./docs/templates/crtusr.txt ./temp
+java -cp ~/panopset.jar -D$PANOPSET_SITE_USR=$PANOPSET_SITE_USR -D$PANOPSET_SITE_PWD=$PANOPSET_SITE_PWD com.panopset.flywheel.Flywheel ./docs/templates/crtusr.txt ./temp
 chmod +x ./temp/*.sh
-scp ./temp/crtusr.sh root@$PANOPSET_SITE_NAME:/root/
+scp ./temp/* root@$PANOPSET_SITE_NAME:/root/

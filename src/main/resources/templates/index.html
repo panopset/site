@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Denebola</title>
+    <title>Panopset</title>
     <link rel="stylesheet" href="../static/css/site.css" th:href="'/css/site.css'" type="text/css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="../static/js/snap.svg-min.js" th:src="'/js/snap.svg-min.js'"></script>
@@ -16,7 +16,7 @@
 </p>
 
 <div th:if= "${error != ''}">
-    <h1 th:text="'Error: '${error}">error</h1>
+    <h1 th:text="'Error: ' + ${error}">error</h1>
     <p>
         Please check server config.
     </p>

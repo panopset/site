@@ -28,12 +28,18 @@ Add the following lines, replacing anything in <> with your values:
 
 
     Host <your host name>
-    HostName <your host ip address, $PANOPSET_SITE_IP/%PANOPSET_SITE_IP%>
+    HostName <your host ip address, as defined in $PANOPSET_SITE_IP%>
     User root
     IdentityFile ~/.ssh/<your private key file>
 
 
-Update your PANOPSET_SITE_IP and PANOPSET_SITE_NAME environment variables, so that the deployment script will work.
+Update your PANOPSET_SITE_IP and PANOPSET_SITE_NAME (as you defined in ~/.ssh/config) environment variables, so that the deployment script will work.
+
+
+
+    sudo vim ~/.profile
+
+
 
 Now, ssh out there:
 
@@ -41,52 +47,93 @@ Now, ssh out there:
     ./s.sh
 
 
-Make sure the script executed successfully
+Now is a good time to
+
+
+    sudo vim /etc/environment
+
+
+... and ad the server environment variables PANOPSET_SITE_REDIS_URL and PANOPSET_SITE_REDIS_PWD.
+
+it will then look something like this:
+
+
+PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
+EXPORT PANOPSET_SITE_REDIS_URL="<redis_url>"
+EXPORT PANOPSET_SITE_REDIS_PWD="<redis_pwd>"
+
+
+Make sure the script executed successfully.
 
 
     echo $HOSTNAME
     java -version
+    netstat -tulpn
+    ufw status
 
 
-If you have to ask what to expect from the above, you might be a little in over your head right now.
+[Verify](./verify.md) results.
 
-That's okay, this is how you learn.
 
-You should by now know when it is safe to:
+If you got a message, that looked like this:
+
+
+    *** System restart required ***
+
+
+The initial script was probably done by the time you logged in.
+
+Once you get the expected verification results, it is safe to:
 
 
     sudo reboot 0
 
 
-Short break, then right back out there:
-    
+
+Short break, then right back out there to verify everything is back up:
+
 
     ./s.sh
-    netstat -tulpn
-
-
-you should see nginx listening on port 80.
-... next, verify the firewall settings are good:
-
-
-    ufw status
-
-
-you should see something like this
-
-
-    root@skunkworks:~# ufw status
-    Status: active
-    
-    To                         Action      From
-    --                         ------      ----
-    OpenSSH                    ALLOW       Anywhere
-    Nginx Full                 ALLOW       Anywhere
-    OpenSSH (v6)               ALLOW       Anywhere (v6)
-    Nginx Full (v6)            ALLOW       Anywhere (v6)
-
-
-now exit out and on your workstation:
-
-
+    exit
     ./userprep.sh
+    ./s.sh
+    ./crtusr.sh
+    exit
+
+
+...back to your workstation again and update your 
+
+
+    ./vc.sh
+
+
+file, replacing root with your username, as defined in $PANOPSET_SITE_USR. Then:
+
+
+    ./deploy.sh
+    ./s.sh
+    ./installservice.sh
+    sudo reboot 0
+
+
+short break and then...
+
+
+    ./s.sh
+
+
+For subsequent deployments, you don't have to run installservice.sh. again, 
+just reboot after the deployment.
+
+Optional, if you want to hit 8080 directly:
+
+
+    sudo ufw allow 8080
+
+
+... troubleshooting
+
+
+    sudo systemctl status web
+    journalctl -u web
+    

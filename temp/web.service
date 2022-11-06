@@ -1,0 +1,12 @@
+[Unit]
+Description=web
+
+[Service]
+User=karl
+Type=simple
+ExecStart=/usr/bin/java -jar /home/karl/site.jar --spring.profiles.active=prod
+SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target
+

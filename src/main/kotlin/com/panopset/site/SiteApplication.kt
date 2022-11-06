@@ -7,9 +7,5 @@ import org.springframework.boot.runApplication
 class SiteApplication
 
 fun main(args: Array<String>) {
-	if (!isEnvValid()) {
-		println(failedEnvMessage())
-		return
-	}
 	runApplication<SiteApplication>(*args)
 }

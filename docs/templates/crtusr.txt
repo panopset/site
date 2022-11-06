@@ -3,6 +3,31 @@ ${@f crtusr.sh}adduser --gecos "" --disabled-password ${PANOPSET_SITE_USR}
 chpasswd <<<"${PANOPSET_SITE_USR}:${PANOPSET_SITE_PWD}"
 usermod -aG sudo ${PANOPSET_SITE_USR}
 rsync --archive --chown=${PANOPSET_SITE_USR}:${PANOPSET_SITE_USR} ~/.ssh /home/${PANOPSET_SITE_USR}
-chown -R ${PANOPSET_SITE_USR}:${PANOPSET_SITE_USR} /home/karl
 chown -R ${PANOPSET_SITE_USR}:${PANOPSET_SITE_USR} /var/www
-ls /home/${PAN_USR}/.ssh
+ls /home/${PANOPSET_SITE_USR}/.ssh
+mv panopsetweb.service /home/${PANOPSET_SITE_USR}/
+mv panopsetweb.conf /home/${PANOPSET_SITE_USR}/
+mv installservice.sh /home/${PANOPSET_SITE_USR}/
+chown -R ${PANOPSET_SITE_USR}:${PANOPSET_SITE_USR} /home/${PANOPSET_SITE_USR}
+chmod +x /home/${PANOPSET_SITE_USR}/*.sh
+
+${@f panopsetweb.service}[Unit]
+Description=Panopset Web Spring boot application
+
+[Service]
+User=${PANOPSET_SITE_USR}
+Type=simple
+ExecStart=/usr/bin/java -jar /home/${PANOPSET_SITE_USR}/site.jar --spring.profiles.active=prod
+SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target
+
+${@f panopsetweb.conf}
+PANOPSET_SITE_REDIS_URL="${PANOPSET_SITE_REDIS_URL}"
+PANOPSET_SITE_REDIS_PWD="${PANOPSET_SITE_REDIS_PWD}"
+
+${@f installservice.sh}sudo mv panopsetweb.service /etc/systemd/system/
+sudo mkdir /etc/panopsetweb
+sudo mv panopsetweb.conf /etc/panopsetweb/
+sudo systemctl enable panopsetweb
