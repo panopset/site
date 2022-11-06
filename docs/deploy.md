@@ -1,7 +1,9 @@
 [home](../README.md)
 
-For site deployments, Panopset recommends using a Linux developer workstation.
-These instructions may need to be modified for other platforms.
+Once you have your development system all set up with the environment variables 
+dscribed in the [README.md](../README.md), you're ready to deploy.
+
+These instructions were tested using [Digitalocean](https://digitalocean.com)* Ubuntu Linux.
 
 Create a digitalocean server with this initialization script (under Advanced Options):
 
@@ -18,10 +20,26 @@ Create a digitalocean server with this initialization script (under Advanced Opt
     echo Droplet: $HOSTNAME, IP Address: $PUBLIC_IPV4 > /usr/share/nginx/html/index.html
 
 
+Optional, if you want to hit 8080 directly, also include:
+
+
+    ufw allow 8080
+
+
+... but normally you'd proxy it, here are some good articles about how to do that:
+
+
+
+* https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-20-04
+* https://www.digitalocean.com/community/tutorials/how-to-configure-nginx-as-a-reverse-proxy-on-ubuntu-22-04
+
+
+<sub>Note that some steps in the articles above are taken care of in the initalization script above.</sub>
+
 Edit your ssh config file, on your PC
 
 
-    vim ~/.ssh/config
+    ./vc.sh
 
 
 Add the following lines, replacing anything in <> with your values:
@@ -40,30 +58,16 @@ Update your PANOPSET_SITE_IP and PANOPSET_SITE_NAME (as you defined in ~/.ssh/co
     sudo vim ~/.profile
 
 
+exit and launch a new shell to pick up your new .profile environment variables.
 
-Now, ssh out there:
+
+Now, ssh out there (after cd'ing back into this project's directory):
 
 
     ./s.sh
 
 
-Now is a good time to
-
-
-    sudo vim /etc/environment
-
-
-... and ad the server environment variables PANOPSET_SITE_REDIS_URL and PANOPSET_SITE_REDIS_PWD.
-
-it will then look something like this:
-
-
-PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
-EXPORT PANOPSET_SITE_REDIS_URL="<redis_url>"
-EXPORT PANOPSET_SITE_REDIS_PWD="<redis_pwd>"
-
-
-Make sure the script executed successfully.
+Make sure the digitalocean initialization script executed successfully:
 
 
     echo $HOSTNAME
@@ -90,7 +94,8 @@ Once you get the expected verification results, it is safe to:
 
 
 
-Short break, then right back out there to verify everything is back up:
+Short break, then right back in and out there to verify everything is back up, 
+and run some scripts:
 
 
     ./s.sh
@@ -125,15 +130,13 @@ short break and then...
 For subsequent deployments, you don't have to run installservice.sh. again, 
 just reboot after the deployment.
 
-Optional, if you want to hit 8080 directly:
-
-
-    sudo ufw allow 8080
 
 
 ... troubleshooting
 
 
-    sudo systemctl status web
-    journalctl -u web
-    
+    sudo systemctl status panopsetweb
+    journalctl -u panopsetweb
+
+
+<sub><sup>* Disclaimer, the author owns stock in DOCN.</sub></sup>

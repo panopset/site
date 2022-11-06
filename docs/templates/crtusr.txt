@@ -19,6 +19,7 @@ User=${PANOPSET_SITE_USR}
 Type=simple
 ExecStart=/usr/bin/java -jar /home/${PANOPSET_SITE_USR}/site.jar --spring.profiles.active=prod
 SuccessExitStatus=143
+EnvironmentFile=/etc/panopsetweb/panopsetweb.conf
 
 [Install]
 WantedBy=multi-user.target
