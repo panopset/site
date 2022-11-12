@@ -114,7 +114,7 @@ and run some scripts:
     ./vc.sh
 
 
-file, replacing root with your username, as defined in $PANOPSET_SITE_USR. Then:
+config file again, replacing root with your username, as defined in $PANOPSET_SITE_USR. Then:
 
 
     ./deploy.sh

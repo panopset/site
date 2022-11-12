@@ -1,4 +1,4 @@
-package com.panopset.site
+package com.panopset.games.muck
 
 data class Tronk (
     var id: String = "",

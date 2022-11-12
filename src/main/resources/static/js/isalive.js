@@ -51,7 +51,7 @@ function getTarget(z0) {
  $.ajax({
   type: "POST",
   contentType : 'application/json; charset=utf-8',
-  url: "/ajaxGetTarget",
+  url: "/muck/ajaxGetTarget",
   data: JSON.stringify(tronk),
    success: function(msg) {
             z0.circle.attr({
