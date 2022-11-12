@@ -1,7 +1,3 @@
-- bring down jquery.
-
-* Separate out muck a bit.
-
  - thymeleaf menu modules.
  - global rename muck to denebola.
 

@@ -60,8 +60,7 @@ class MuckController(private val config: Config, private val panBase: PanBase) {
         }
         tronk.id = UUID.randomUUID().toString()
         val random3hex = getRandomHexString(3)
-        val newFill = "#$random3hex"
-        tronk.fill = newFill
+        tronk.fill = "#${random3hex}"
         val tronkJson = Gson().toJson(tronk)
         panBase.rc.put(tronk.id, tronkJson)
         val errorMsg = panBase.rc.getError()

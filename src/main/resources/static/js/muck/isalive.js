@@ -41,22 +41,28 @@ function loopIn(z0) {
 }
 
 function getTarget(z0) {
- var tronk = {
-  "x": z0.tx,
-  "y": z0.ty,
-  "fill" : z0.fill,
-  "tx": 0,
-  "ty": 0
- }
+ const tronk = {
+  "x": z0.circle.attr('cx'),
+  "y": z0.circle.attr('cy'),
+  "r": z0.circle.attr('r'),
+  "fill": z0.circle.attr('fill'),
+  "stroke": z0.circle.attr('stroke'),
+  "tx": z0.tx,
+  "ty": z0.ty
+ };
+
+ const bonk = JSON.stringify(tronk)
+
  $.ajax({
   type: "POST",
   contentType : 'application/json; charset=utf-8',
   url: "/muck/ajaxGetTarget",
-  data: JSON.stringify(tronk),
+  data: bonk,
    success: function(msg) {
+            const fronk = JSON.parse(msg)
             z0.circle.attr({
-              fill: msg.fill,
-              stroke: "#f00",
+              fill: fronk.fill,
+              stroke: "#fff",
               strokeWidth: 1
             });
     },
