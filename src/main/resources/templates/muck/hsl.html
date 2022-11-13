@@ -6,12 +6,16 @@
 </head>
 <body>
 
-<p>
-    <a href="../index.html" th:href="'/'">Home</a> ~
-    <a href="./muck.html" th:href="'/muck/muck'">Muck</a> ~
-    <a href="./hsl.html" th:href="'/muck/hsl'">High Score List</a> ~
-    <a href="./config.html" th:href="'/muck/config'">Configuration</a>
-</p>
+<div th:replace="fragments/nav :: menuBarFragment">
+    <nav class="menubar">
+        <p>
+            <a href="../index.html">Home</a> ~
+            <a href="./muck.html">Muck</a> ~
+            <a href="./hsl.html">High Score List</a> ~
+            <a href="./config.html">Configuration</a>
+        </p>
+    </nav>
+</div>
 
 <h1>Denebola High Score List</h1>
 
