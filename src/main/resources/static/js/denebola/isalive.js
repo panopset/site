@@ -56,7 +56,7 @@ function getTarget(z0) {
  $.ajax({
   type: "POST",
   contentType : 'application/json; charset=utf-8',
-  url: "/muck/ajaxGetTarget",
+  url: "/denebola/ajaxGetTarget",
   data: bonk,
    success: function(msg) {
             const fronk = JSON.parse(msg)

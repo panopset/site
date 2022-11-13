@@ -1,4 +1,4 @@
-package com.panopset.games.muck
+package com.panopset.games.denebola
 
 import com.google.gson.Gson
 import com.panopset.site.*
@@ -12,31 +12,31 @@ import java.util.*
 import javax.servlet.http.HttpServletResponse
 
 @Controller
-class MuckController(private val config: Config, private val panBase: PanBase) {
-    @GetMapping(*["/muck/muck"])
-    fun muck(model: Model?, response: HttpServletResponse?): String? {
+class DenebolaController(private val config: Config, private val panBase: PanBase) {
+    @GetMapping(*["/denebola/denebola"])
+    fun denebola(model: Model?, response: HttpServletResponse?): String? {
         if (model != null) {
             panInit(model)
             model.addAttribute("error", panBase.rc.getError())
         }
-        return "muck/muck"
+        return "denebola/denebola"
     }
 
-    @GetMapping("/muck/hsl")
+    @GetMapping("/denebola/hsl")
     fun highScoreList(model: Model?, response: HttpServletResponse?): String? {
         if (model != null) {
             panInit(model)
         }
-        return "muck/hsl"
+        return "denebola/hsl"
     }
 
-    @GetMapping("/muck/config")
+    @GetMapping("/denebola/config")
     fun config(model: Model?, response: HttpServletResponse?): String? {
         if (model != null) {
             panInit(model)
             model.addAttribute("svr", SystemPropertyMap.map)
         }
-        return "muck/config"
+        return "denebola/config"
     }
 
     private fun getRandomHexString(numchars: Int): String? {
@@ -48,7 +48,7 @@ class MuckController(private val config: Config, private val panBase: PanBase) {
         return sb.toString().substring(0, numchars)
     }
 
-    @PostMapping("/muck/ajaxGetTarget")
+    @PostMapping("/denebola/ajaxGetTarget")
     fun getResult(@RequestBody tronk: Tronk, response: HttpServletResponse?): ResponseEntity<String?>? {
         if (tronk.id.isNotBlank()) {
             val jsonString = panBase.rc.get(tronk.id)

@@ -15,4 +15,4 @@
 
 Lower priority:
 
- - global rename muck to denebola.
+ - global rename denebola to denebola.
