@@ -1,3 +1,6 @@
+* smartphone friendly check.
+* html checks.
+
 * navbar.
 * desktop.
 
