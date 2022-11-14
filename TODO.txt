@@ -1,18 +1,13 @@
+* navbar.
+* desktop.
 
-
-
-
-
-
-
-
-* New panopset projects:
+* New projects:
 
   - compat
   - desk
 
 
+* Low priority
 
-Lower priority:
-
- - global rename denebola to denebola.
+ - static content independence.
+ - docker, other ideas for scalability.

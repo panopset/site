@@ -2,7 +2,9 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <title>Denebola High Score List</title>
-    <link rel="stylesheet" href="../../static/css/site.css" th:href="'/css/site.css'" type="text/css"/>
+    <link rel="stylesheet" href="../../static/css/pansite.css" th:href="'/css/site.css'" type="text/css"/>
+    <script src="../../static/js/jquery.js" th:src="'../js/jquery.js'"></script>
+    <script src="../../static/js/pansite.js" th:src="'../js/pansite.js'"></script>
 </head>
 <body>
 
@@ -13,6 +15,7 @@
             <a href="denebola.html">Denebola</a> ~
             <a href="./hsl.html">High Score List</a> ~
             <a href="./config.html">Configuration</a>
+            <button id="ptoggle" onclick="toggleScreens()">printer</button>
         </p>
     </nav>
 </div>
