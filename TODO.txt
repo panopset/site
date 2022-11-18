@@ -1,5 +1,4 @@
-* smartphone friendly check.
-* html checks.
+
 
 * navbar.
 * desktop.
@@ -14,3 +13,11 @@
 
  - static content independence.
  - docker, other ideas for scalability.
+
+******************************************
+*** Recurring                          ***
+******************************************
+
+ * smartphone friendly check.
+ * html checks.
+ 

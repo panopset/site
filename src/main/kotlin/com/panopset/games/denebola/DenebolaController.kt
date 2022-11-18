@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse
 
 @Controller
 class DenebolaController(private val config: Config, private val panBase: PanBase) {
-    @GetMapping(*["/denebola/denebola"])
+    @GetMapping(*["/denebola"])
     fun denebola(model: Model?, response: HttpServletResponse?): String? {
         if (model != null) {
             panInit(model)
