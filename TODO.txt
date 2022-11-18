@@ -3,7 +3,7 @@
 * navbar.
 * desktop.
 
-* deploy static
+* replace scp in deploystatic.sh with rsync
 * practice https on secondary floating ip
 * site controller reorg, just the things that need to be scanned.
 

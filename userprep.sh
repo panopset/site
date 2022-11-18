@@ -13,7 +13,7 @@ if [ "$PANOPSET_SITE_PWD" = "" ]; then
  exit 2
 fi
 
-# Create the adduser.sh command for your new server
+# Create the crtusr.sh command for your new server
 
 java -cp ~/panopset.jar -D$PANOPSET_SITE_USR=$PANOPSET_SITE_USR -D$PANOPSET_SITE_PWD=$PANOPSET_SITE_PWD com.panopset.flywheel.Flywheel ./docs/templates/crtusr.txt ./temp
 chmod +x ./temp/*.sh

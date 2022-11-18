@@ -118,6 +118,44 @@ short break and then...
     ./s.sh
 
 
+replace your
+
+    location / {
+     try_files $uri $uri/ =404;
+    }
+
+with
+
+    location /images/ {
+     try_files $uri $uri/ =404;
+    }
+    location /downloads/ {
+     try_files $uri $uri/ =404;
+    }
+    location /installers/ {
+     try_files $uri $uri/ =404;
+    }
+    location /css/ {
+     try_files $uri $uri/ =404;
+    }
+    location /js/ {
+     try_files $uri $uri/ =404;
+    }
+    location /gen/ {
+     try_files $uri $uri/ =404;
+    }
+    location /s/ {
+     try_files $uri $uri/ =404;
+    }
+    location / {
+     proxy_pass http://127.0.0.1:8080;
+    }
+
+
+in /etc/nginx/sites-available/<your domain>
+
+
+
 For subsequent deployments, you don't have to run installservice.sh. again, just do a 
 
 
