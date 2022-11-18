@@ -3,6 +3,11 @@
 * navbar.
 * desktop.
 
+* deploy static
+* practice https on secondary floating ip
+* site controller reorg, just the things that need to be scanned.
+
+
 * New projects:
 
   - compat

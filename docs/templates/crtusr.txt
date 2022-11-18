@@ -8,6 +8,7 @@ ls /home/${PANOPSET_SITE_USR}/.ssh
 mv panopsetweb.service /home/${PANOPSET_SITE_USR}/
 mv panopsetweb.conf /home/${PANOPSET_SITE_USR}/
 mv installservice.sh /home/${PANOPSET_SITE_USR}/
+mv ${PANOPSET_SITE_DN} /home/${PANOPSET_SITE_USR}/
 chown -R ${PANOPSET_SITE_USR}:${PANOPSET_SITE_USR} /home/${PANOPSET_SITE_USR}
 chmod +x /home/${PANOPSET_SITE_USR}/*.sh
 
@@ -32,3 +33,23 @@ ${@f installservice.sh}sudo mv panopsetweb.service /etc/systemd/system/
 sudo mkdir /etc/panopsetweb
 sudo mv panopsetweb.conf /etc/panopsetweb/
 sudo systemctl enable panopsetweb
+sudo mkdir -p /var/www/${PANOPSET_SITE_DN}/html
+sudo mv ${PANOPSET_SITE_DN} /etc/nginx/sites-available/
+sudo ln -s /etc/nginx/sites-available/${PANOPSET_SITE_DN} /etc/nginx/sites-enabled/
+sudo chown -R ${PANOPSET_SITE_USR}:${PANOPSET_SITE_USR} /var/www
+sudo chmod -R 755 /var/www/${PANOPSET_SITE_DN}
+sudo certbot --nginx -d ${PANOPSET_SITE_DN} -d www.${PANOPSET_SITE_DN}
+
+${@f PANOPSET_SITE_DN}server {
+ listen 80;
+ listen [::]:80;
+
+ root /var/www/${PANOPSET_SITE_DN}/html;
+ index index.html index.htm index.nginx-debian.html;
+
+ server_name ${PANOPSET_SITE_DN} www.${PANOPSET_SITE_DN};
+
+ location / {
+  try_files $uri $uri/ =404;
+ }
+}

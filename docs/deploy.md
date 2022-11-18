@@ -18,25 +18,9 @@ Create a digitalocean server with this initialization script (under Advanced Opt
     export HOSTNAME=$(curl -s http://169.254.169.254/metadata/v1/hostname)
     export PUBLIC_IPV4=$(curl -s http://169.254.169.254/metadata/v1/interfaces/public/0/ipv4/address)
     echo Droplet: $HOSTNAME, IP Address: $PUBLIC_IPV4 > /usr/share/nginx/html/index.html
+    sed -i 's/# server_names_hash_bucket_size/server_names_hash_bucket_size/g' /etc/nginx/nginx.conf
 
 
-Optional, if you want to hit 8081 directly, also include:
-
-
-    ufw allow 8081
-
-
-Update src/main/resources/application.properties to change the port.
-
-... but normally you'd proxy it, here are some good articles about how to do that:
-
-
-
-* https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-20-04
-* https://www.digitalocean.com/community/tutorials/how-to-configure-nginx-as-a-reverse-proxy-on-ubuntu-22-04
-
-
-<sub>Note that some steps in the articles above are taken care of in the initalization script above.</sub>
 
 Edit your ssh config file, on your PC
 
@@ -47,14 +31,16 @@ Edit your ssh config file, on your PC
 Add the following lines, replacing anything in <> with your values:
 
 
-    Host <your host name>
-    HostName <your host ip address, as defined in $PANOPSET_SITE_IP%>
+    Host <your host name, as defined in $PANOPSET_SITE_NAME>
+    HostName <your host ip address, as defined in $PANOPSET_SITE_IP>
     User root
     IdentityFile ~/.ssh/<your private key file>
 
 
 Update your PANOPSET_SITE_IP and PANOPSET_SITE_NAME (as you defined in ~/.ssh/config) environment variables, so that the deployment script will work.
 
+
+* Reboot to pick up any changed values.
 
 
     sudo vim ~/.profile
@@ -117,9 +103,12 @@ and run some scripts:
 config file again, replacing root with your username, as defined in $PANOPSET_SITE_USR. Then:
 
 
-    ./deployfirsttime.sh
+    ./deployspring.sh
     ./s.sh
     ./installservice.sh
+    exit
+    ./deploystatic.sh
+    ./s.sh
     sudo reboot 0
 
 
@@ -144,4 +133,16 @@ For subsequent deployments, you don't have to run installservice.sh. again, just
     journalctl -u panopsetweb
 
 
+References
+
+
+
+* https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-20-04
+* https://www.digitalocean.com/community/tutorials/how-to-configure-nginx-as-a-reverse-proxy-on-ubuntu-22-04
+
+
+
 <sub><sup>* Disclaimer, the author owns stock in DOCN.</sub></sup>
+
+
+

@@ -12,8 +12,8 @@ function toggleScreens() {
 function setScreen() {
     scz = "screen"
     document.documentElement.style.setProperty('--bgd000', '#000');
-    document.documentElement.style.setProperty('--bgd001', '#dff');
-    document.documentElement.style.setProperty('--bgd002', '#eee');
+    document.documentElement.style.setProperty('--bgd001', '#036');
+    document.documentElement.style.setProperty('--bgd002', '#666');
     document.documentElement.style.setProperty('--fgd000', '#cf0');
     document.documentElement.style.setProperty('--fgd001', '#ff0');
     document.documentElement.style.setProperty('--fgd002', '#ccc');

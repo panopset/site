@@ -2,17 +2,40 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <link rel="stylesheet" href="../../static/css/pansite.css" type="text/css">
+    <script src="../../static/js/jquery.js"></script>
+    <script src="../../static/js/pansite.js"></script>
     <title>Panopset</title>
 </head>
 
 <div style="height: 32px" th:fragment="menuBarFragment">
-    <nav class="menubar">
-        <p>
-            <a href="../index.html" th:href="'/'">Home</a> ~
-            <a href="../denebola/denebola.html" th:href="'/denebola'">Denebola</a> ~
-            <a href="../denebola/hsl.html" th:href="'/denebola/hsl'">High Score List</a> ~
-            <a href="../denebola/config.html" th:href="'/denebola/config'">Configuration</a>
-            <button id="ptoggle" onclick="toggleScreens()">printer</button>
-        </p>
+    <nav class="menuBar">
+        <ul>
+            <li class="pad0 index">
+                <a href="./home">
+                <img id="panopset32" th:src="localhost://images/favicon-32.png'" src="../../../../../raw/images/favicon-32.png" alt="PANOPSET"/>
+                </a>
+            </li>
+            <li><div class="menuSeparator">&nbsp;</div></li>
+            <li><div class="menuSeparator">&nbsp;</div></li>
+            <li><a href="../index.html" th:href="'/'">Home</a></li>
+            <li><div class="menuSeparator">&nbsp;</div></li>
+            <li class="padLeft linkDown">
+                <a href="#">Games</a>
+                <ul>
+                    <li>bar</li>
+                    <li>bat</li>
+                </ul>
+            </li>
+            <li><div class="menuSeparator">&nbsp;</div></li>
+            <li>foo</li>
+            <li><div class="menuSeparator">&nbsp;</div></li>
+        </ul>
     </nav>
+    <p>
+        <a href="../index.html" th:href="'/'">Home</a> ~
+        <a href="../denebola/denebola.html" th:href="'/denebola'">Denebola</a> ~
+        <a href="../denebola/hsl.html" th:href="'/denebola/hsl'">High Score List</a> ~
+        <a href="../denebola/config.html" th:href="'/denebola/config'">Configuration</a>
+        <button id="ptoggle" onclick="toggleScreens()">printer</button>
+    </p>
 </div></html>

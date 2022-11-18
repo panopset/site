@@ -1,8 +1,10 @@
 :root {
     --bgd000: #000;
-    --fgd000: #dff;
-    --fgd001: #cf0;
-    --fgd002: #ff0;
+    --bgd001: #036;
+    --bgd002: #666;
+    --fgd000: #cf0;
+    --fgd001: #ff0;
+    --fgd002: #ccc;
 }
 
 body {
@@ -25,3 +27,78 @@ a:hover {
 a:active {
   color: var(--fgd001);
 }
+
+/* ************************** */
+/* navbar inspired by https://css-tricks.com/solved-with-css-dropdown-menus/ */
+/* ************************** */
+
+.menuSeparator {
+ border-left: 1px solid var(--bgd001);
+ width: 0px;
+ height: 100%;
+}
+
+nav.menuBar a {
+ display: block;
+ height: 100%;
+ text-decoration: var(--fgd001);
+ font-variant: small-caps;
+}
+
+nav.menuBar li {
+ color: var(--fgd001);
+ background: var(--bgd001);
+ float: left;
+ position: relative;
+}
+
+nav.menuBar ul {
+ list-style: none;
+ margin: 0;
+ padding-left: 0;
+}
+
+nav.menuBar li:hover {
+ background: var(--bgd002);
+ cursor: pointer;
+}
+
+nav.menuBar ul li ul {
+ background: var(--bgd002);
+ visibility: hidden;
+ opacity: 0;
+ min-width: 25rem;
+ position: absolute;
+ transition: all 0.5s ease;
+ left: 0;
+ display: none;
+ padding: 1rem;
+}
+
+nav.menuBar ul li:hover > ul,
+ul li ul:hover {
+ visibility: visible;
+ opacity: 1;
+ display: block;
+}
+nav.menuBar ul li ul li {
+ clear: both;
+ width: 100%;
+}
+
+nav.menubar ul li ul li ul li{
+ background: var(--mbg);
+ margin-left: 5rem;
+ margin-top: -50px;
+}
+
+.linkDown span {
+ display: inline-block;
+ transform: rotate(90deg);
+}
+
+.padLeft {
+ padding: 0px 10px 0px 10px;
+ height: 32px;
+}
+

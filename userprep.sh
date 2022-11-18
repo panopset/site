@@ -3,11 +3,6 @@ if [ "$PANOPSET_SITE_NAME" = "" ]; then
  exit 2
 fi
 
-if [ "$PANOPSET_SITE_IP" = "" ]; then
- echo 'Please define required environment variables, see documentation in the README.md.'
- exit 2
-fi
-
 if [ "$PANOPSET_SITE_USR" = "" ]; then
  echo 'Please define required environment variables, see documentation in the README.md.'
  exit 2
