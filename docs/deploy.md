@@ -117,7 +117,7 @@ and run some scripts:
 config file again, replacing root with your username, as defined in $PANOPSET_SITE_USR. Then:
 
 
-    ./deploy.sh
+    ./deployfirsttime.sh
     ./s.sh
     ./installservice.sh
     sudo reboot 0
@@ -129,8 +129,11 @@ short break and then...
     ./s.sh
 
 
-For subsequent deployments, you don't have to run installservice.sh. again, 
-just reboot after the deployment.
+For subsequent deployments, you don't have to run installservice.sh. again, just do a 
+
+
+
+    ./deploy.sh
 
 
 
