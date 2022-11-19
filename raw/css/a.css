@@ -1,12 +1,4 @@
-html {
- background-color: var(--border);
- height: 100%;
-}
-
 body {
- background-color: var(--bgd);
- color: var(--fgd);
- font-size: 22px;
  margin: 1px;
  height: 99%;
 }
@@ -71,7 +63,7 @@ div.inset {
 .mainfc {
  display: flex;
  flex-flow: column;
- height: 100%;
+ height: 800px;
 }
 
 div.flexdown {

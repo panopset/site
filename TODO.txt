@@ -26,4 +26,10 @@ exclude vaadin
 
  * smartphone friendly check.
  * html checks.
- 
+
+
+******************************************
+*** Low priority                       ***
+******************************************
+
+* restructure scrambler (box fill again) and flywheel css layouts.
