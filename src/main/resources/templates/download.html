@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:tbody="">
+<head th:replace="fragments/header :: headFragment">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Panopset</title>
+ <link rel="shortcut icon" href="../../../../../../html/images/favicon-32.png" />
+ <link rel="stylesheet" href="../../../../../../html/css/a.css" type="text/css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ <script src="../../../../../../html/js/a.js"></script>
+</head><body class="borderline" onload="initPage()">
+
+<div class="mainfc">
+<div th:replace="fragments/nav :: menuBarFragment">
+<p>
+fragments/nav :: menuBarFragment
+</p>
+</div>
+
+<div class="content2">
+
+<div class="inset">
+
+<h1>platform installers</h1>
+<p>
+If you do not see an installer for your platform, you may <a href="./build">build</a> it from scratch.
+</p>
+<table><thead>
+<tr><th>Platform</th><th>Bytes</th><th>Download</th>
+<th>Version</th>
+<th>SHA-256</th>
+</tr>
+</thead>
+<tbody:block th:each="map: ${installer_map}">
+<tr class="dswidth100">
+ <td class="dsnw" th:text="${map.key}">PLATFORM</td>
+ <td class="dsnw" th:text="${map.value[1].value}">BYTES</td>
+ <td class="dsnw" ><a href="link" th:href="'/installers/' + ${map.value[3].value}" th:text="${map.value[3].value}">DOWNLOAD</a></td>
+ <td class="dsnw" th:text="${map.value[0].value}"></td>
+ <td class="dsw99" colspan="2"><input class="output2" type="text" th:value="${map.value[2].value}"/></td>
+</tr>
+</tbody:block>
+</table>
+
+<h1>versions</h1>
+
+<p>
+help->about, from any Panopset JavaFX application will give you the <a href="https://github.com/panopset/src/blob/main/docs/vh.md">version</a>.
+To display the panopset.jar version, from the command line:</p>
+
+<input class="output2" type="text" th:value="'java -cp ' + ${homedirpfx} + 'panopset.jar version'" value="java -cp ~/panopset.jar version"/>
+
+<h1>flexible</h1>
+<p>
+Panopset desktop JavaFX applications are open source.  You have as many ways to 
+install and use them, as is possible with the latest Java releases.
+Download a pre-built installer, or
+<a href="./build">build</a> your own installer. Download the panopset.jar all-in one jar for your platform,
+or <a href="./build">build</a> your own. Download the source and use it in your own maven or gradle project, 
+it doesn't matter.
+Whatever way to launch, that best suits your needs, is the right way. 
+</p>
+
+<h1>all-in-one jar</h1>
+<p>
+panopset.jar downloads are available for these platforms:
+</p>
+
+<table><thead>
+<tr><th>Platform</th><th>Bytes</th><th>Download</th>
+<th>Version</th>
+<th>SHA-256</th>
+</tr>
+<tbody:block th:each="map: ${jar_map}">
+<tr class="dswidth100">
+ <td class="dsnw" th:text="${map.key}"></td>
+ <td class="dsnw" th:text="${map.value[1].value}"></td>
+ <td class="dsnw"><a href="link" th:href="'/downloads/' + ${map.key} + '/' + ${map.value[3].value}" th:text="${map.value[3].value}">DOWNLOAD</a></td>
+ <td class="dsnw" th:text="${map.value[0].value}"></td>
+ <td class="dsw99" colspan="2"><input class="output2" type="text" th:value="${map.value[2].value}"/></td>
+</tr>
+</tbody:block>
+</table>
+
+<div th:replace="fragments/body :: terms" th:remove="tag"></div>
+
+</div>
+
+</div>
+</div>
+
+<div th:replace="fragments/footer :: google_stats" th:remove="tag"></div>
+
+</body></html>

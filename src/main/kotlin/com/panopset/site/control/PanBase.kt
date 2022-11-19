@@ -1,4 +1,4 @@
-package com.panopset.site
+package com.panopset.site.control
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component

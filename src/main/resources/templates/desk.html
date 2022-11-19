@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/header :: headFragment">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Panopset</title>
+ <link rel="shortcut icon" href="../../../../../../html/images/favicon-32.png" />
+ <link rel="stylesheet" href="../../../../../../html/css/a.css" type="text/css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ <script src="../../../../../../html/js/a.js"></script>
+</head><body class="borderline" onload="initPage()">
+
+<div class="mainfc">
+<div th:replace="fragments/nav :: menuBarFragment">
+<p>
+fragments/nav :: menuBarFragment
+</p>
+</div>
+
+<div class="content2">
+<div class="inset">
+
+<h1>Desktop Applications</h1>
+
+<p>
+Panopset desktop applications (listed on the Panopset <a href="/home">home</a> page) may be run in as many ways that exist, to run
+Java applications. They may be run...
+</p>
+
+<h2>As a desktop application.</h2>
+<p>
+This is the best way, for most people.  You may either...
+</p>
+<ul><li>
+<a href="/download">Download</a> and install the Panopset desktop applications installer for your platform.
+</li><li>
+<a href="/build">Build</a> your own Panopset desktop applications installer, for your personal computer.
+</li></ul>
+
+<h2>As a Java jar call.</h2>
+<p>
+Since Java 9 <a href="https://openjdk.java.net/projects/jigsaw/">jigsaw</a>, utilizing all-in-one jars 
+started to become obsolete.  
+At Panopset, your way is the right way, so Panopset still publishes <b>panopset.jar</b>,
+on the <a href="/download">download</a> page underneath the platform installer links.  You may also
+build it for your personal computer, using the same <a href="/build">build</a> script as you would
+for building a desktop applications installer. If you put <b>panopset.jar</b>
+in your home directory, you may launch any of the Panopset desktop applications
+by setting the classpath to panopset.jar in your home directory.  For example,
+ for flywheel, it would be:
+</p>
+<pre>
+java -cp <span th:text="${homedirpfx}"></span>panopset.jar flywheel
+</pre>
+<h2>As a maven/gradle dependency.</h2>
+<pre>
+git clone https://github.com/panopset/src.git
+cd <span th:text="'src' + ${userpathsep} + 'shoring'">src/shoring</span>
+mvn install
+</pre>
+<p>
+The above instructions will place all the Panopset maven projects in your local repository, making them
+available to your maven and/or gradle projects.  Panopset has not published its artifacts to a standard
+repository yet, as there just hasn't been a compelling reason to do so.
+</p>
+<h2>As any other kind of Java dependency.</h2>
+<p>Since it is open <a href="https://github.com/panopset/src">source</a>, you can do almost anything
+you like with it except...
+</p>
+<ul>
+<li>
+Publish something that utilizes a closed source enhancement of any of it.
+</li>
+<li>
+Use blackjackEngine to drive a real money game.
+</li>
+</ul>
+<p>See the Panopset <a href="https://github.com/panopset/src/blob/main/LICENSE">license</a> for details.</p>
+
+
+</div>
+
+</div>
+
+</div>
+<div th:replace="fragments/footer :: google_stats" th:remove="tag"></div>
+
+</body></html>
+

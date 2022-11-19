@@ -180,7 +180,7 @@ References
 
 
 
-<sub><sup>* Disclaimer, the author owns stock in DOCN.</sub></sup>
+<sub><sup>* Disclaimer, the author owns stock in [DOCN](https://digitalocean.com).</sub></sup>
 
 
 

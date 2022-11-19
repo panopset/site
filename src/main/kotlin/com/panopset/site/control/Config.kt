@@ -1,4 +1,4 @@
-package com.panopset.site
+package com.panopset.site.control
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.EnableConfigurationProperties

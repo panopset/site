@@ -1,9 +1,12 @@
+include flywheel from local repo
+exclude vaadin
 
 
 * navbar.
 * desktop.
 
-* site controller reorg, just the things that need to be scanned.
+
+
 
 
 * New projects:

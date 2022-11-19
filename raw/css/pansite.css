@@ -2,30 +2,39 @@
     --bgd000: #000;
     --bgd001: #036;
     --bgd002: #666;
-    --fgd000: #cf0;
-    --fgd001: #ff0;
-    --fgd002: #ccc;
+    --fgd000: #cfc;
+    --fgd001: #9df;
+    --fgd002: #33b;
 }
 
 body {
  background-color: var(--bgd000);
  color: var(--fgd000);
+ margin: 0px;
+ padding: 0px;
+ font-size: x-large;
+}
+
+div.inset {
+ margin: 1em;
+ font-size: large;
 }
 
 a:link {
-  color: var(--fgd001);
+ color: var(--fgd001);
+ text-decoration: none;
 }
 
 a:visited {
-  color: var(--fgd001);
+ color: var(--fgd001);
 }
 
 a:hover {
-  color: var(--fgd002);
+ color: var(--fgd002);
 }
 
 a:active {
-  color: var(--fgd001);
+ color: var(--fgd001);
 }
 
 /* ************************** */
@@ -33,9 +42,9 @@ a:active {
 /* ************************** */
 
 .menuSeparator {
- border-left: 1px solid var(--bgd001);
- width: 0px;
- height: 100%;
+ width: 1px;
+ height: 32px;
+ background: var(--bgd000);
 }
 
 nav.menuBar a {
@@ -47,7 +56,6 @@ nav.menuBar a {
 
 nav.menuBar li {
  color: var(--fgd001);
- background: var(--bgd001);
  float: left;
  position: relative;
 }
@@ -86,10 +94,13 @@ nav.menuBar ul li ul li {
  width: 100%;
 }
 
-nav.menubar ul li ul li ul li{
- background: var(--mbg);
+nav.menuBar ul li ul li ul li{
  margin-left: 5rem;
  margin-top: -50px;
+}
+
+.menuBar {
+ background: var(--bgd001);
 }
 
 .linkDown span {
@@ -97,8 +108,16 @@ nav.menubar ul li ul li ul li{
  transform: rotate(90deg);
 }
 
+.pad0 {
+ padding: 0px;
+ height: 32px;
+}
+
 .padLeft {
  padding: 0px 10px 0px 10px;
  height: 32px;
 }
 
+#clock {
+ font-family: sans-serif;
+}

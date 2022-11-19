@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<title>Panopset</title>
+<link rel="shortcut icon" href="/images/logo16.png" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="Description" content="About">
+<link rel="stylesheet" href="../../../../../../../html/css/a.css" type="text/css">
+
+</head><body>
+
+<div class="flexdown">
+
+<div id="main" class="dsline" th:fragment="main"  th:object="${fwInput}">
+
+<div id="pan00" class="dscol">
+ <form id="fwform" action="#" method="post" th:action="@{/}"> 
+  <div class="dsline" th:replace="fw/input :: ctlfrg">ctlfrg</div>
+  <div id="pan02" class="dsline">
+   <textarea onchange="refreshResult();" onkeyup="setDirty();" id="listStr" th:field="*{listStr}" placeholder="List"></textarea>
+   <textarea class="dsflex1" onchange="refreshResult();" onkeyup="setDirty();" id="template" th:field="*{template}" placeholder="Template">${w0}</textarea>
+  </div>
+ </form>
+ <button onclick="doSelectCopy('result')" style="text-align: left;">Copy result to clipboard</button>
+ <textarea class="dsflex1" id="result" th:text="${result}" placeholder="Results will appear here, as you make changes above."></textarea>
+</div>
+
+<script>
+ $(document).ready(function () {
+  $("#functions").change(function(){
+   var optn = $('option:selected', this);
+   var fe = optn.attr('data-functionExample');
+   if (fe) {
+    var pv = $('#template').val();
+    $('#template').val(pv + fe);
+   }
+  });
+ });
+
+ $(document).ready(function () {
+  $("#samples").change(function(){
+   var optn = $('option:selected', this);
+   populateSample(
+    optn.attr('data-listText'),
+    optn.attr('data-templateText'),
+    optn.attr('data-tokens'),
+    optn.attr('data-splitz'),
+    optn.attr('data-lineBreaks'),
+    optn.attr('data-listBreaks')
+   );
+  });
+ });
+
+ function populateSample(
+  listText, 
+  templateText, 
+  tokens, 
+  splitz, 
+  lineBreaks, 
+  listBreaks) {
+  $('#listStr').val(listText);
+  $('#template').val(templateText);
+  $('#tokens').val(tokens);
+  $('#splitz').val(splitz);
+  if (lineBreaks == 'true') {
+   $('#lineBreakStr1').prop('checked', true);
+  } else {
+   $('#lineBreakStr1').prop('checked', false);
+  }
+  if (listBreaks == 'true') {
+   $('#listBreakStr1').prop('checked', true);
+  } else {
+   $('#listBreakStr1').prop('checked', false);
+  }
+  refreshResult();
+ }
+ 
+ function clearAllFields() {
+  $('#listStr').val('');
+  $('#template').val('');
+  $('#tokens').val('');
+  $('#splitz').val('');
+  $('#lineBreakStr1').prop('checked', false);
+  $('#listBreakStr1').prop('checked', false);
+  $('#result').val('');
+  $('#samples').val('Choose');
+  $('#functions').val('Choose');
+ }
+
+ function filterLines() {
+  let out = '';
+  const a00 = $('#listStr').val().split('\n')
+  const a01 = $('#template').val().split('\n');
+  loop:
+  for (let i00 = 0; i00 < a00.length; i00++) {
+   for (let i01 = 0; i01 < a01.length; i01++) {
+    const inpstr = a00[i00];
+    const fltstr = a01[i01];
+    if (inpstr === fltstr) {
+     continue loop;
+    } else {
+     out = out + inpstr + '\n';
+    }
+   }
+  }
+  $('#result').val(out);
+ }
+
+ function setDirty() {
+  if (dirty) {
+   return;
+  }
+  dirty = true;
+  window.setTimeout(function () { refreshResult(); }, 500 );
+ }
+ 
+ function doSelectCopy(id) {
+  el = document.getElementById(id); 
+  el.focus();
+  el.select();
+  navigator.clipboard.writeText($('#result').val());
+ }
+ 
+ function refreshResult() {
+  dirty = false;
+  var fwi = {}
+  fwi["lineBreakStr"] = $("#lineBreakStr1").prop("checked");
+  fwi["listBreakStr"] = $("#listBreakStr1").prop("checked");
+  fwi["listStr"] = $("#listStr").val();
+  fwi["template"] = $("#template").val();
+  fwi["tokens"] = $("#tokens").val();
+  fwi["splitz"] = $("#splitz").val();
+  $.ajax({
+   type: "POST",
+   contentType: "application/json",
+   url: "/af",
+   data: JSON.stringify(fwi),
+   cache: false,
+   timeout: 100000,
+   success: function (data) {
+    $('#result').val(data);
+   },
+   error: function (e) {
+    console.log("Error: ", e);
+   }
+  });
+ }
+</script>
+
+<script>
+ var dirty = false;
+ refreshResult();
+</script>
+
+</div></div></body></html>

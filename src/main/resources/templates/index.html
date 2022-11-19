@@ -2,25 +2,127 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <title>Panopset</title>
+    <link rel="shortcut icon" href="../../../../raw/images/favicon-32.png" th:href="'images/favicon-32.png'" />
     <link rel="stylesheet" href="../../../../raw/css/pansite.css" th:href="'/css/pansite.css'" type="text/css"/>
     <script src="../../../../raw/js/jquery.js" th:src="'/js/jquery.js'"></script>
     <script src="../../../../raw/js/pansite.js" th:src="'/js/pansite.js'"></script>
+    <script src="../../../../raw/js/clock.js" th:src="'/js/clock.js'"></script>
 </head>
 <body>
 
 <div th:replace="fragments/nav :: menuBarFragment">
-    <nav class="menubar">
-        <p>
-            <a href="./index.html">Home</a> ~
-            <a href="denebola/denebola.html">Denebola</a> ~
-            <a href="denebola/hsl.html">High Score List</a> ~
-            <a href="denebola/config.html">Configuration</a>
-            <button id="ptoggle" onclick="toggleScreens()">printer</button>
-        </p>
+    <nav class="menuBar">
+        <ul class="pad0">
+            <li class="pad0 index">
+                <a href="./home">
+                    <img th:src="'/images/favicon-32.png'" src="../../../../raw/images/favicon-32.png" alt="PANOPSET"/>
+                </a>
+            </li>
+            <li><div class="menuSeparator">&nbsp;</div></li>
+            <li><div class="menuSeparator">&nbsp;</div></li>
+            <li class="padLeft linkDown"><a href="#">web <span>&#8227;</span></a>
+                <ul>
+                    <li><a href="./flywheel">flywheel</a></li>
+                    <li><a href="./scrambler">scrambler</a></li>
+                    <li><a href="./denebola">denebola</a></li>
+                </ul>
+            </li>
+            <li><div class="menuSeparator">&nbsp;</div></li>
+            <li>
+                <button id="ptoggle" onclick="toggleScreens()">printer</button>
+            </li>
+            <li style="float: right">
+                <span id="clock"></span><script>startTime();</script>
+            </li>
+        </ul>
     </nav>
 </div>
 
-<h1>home page</h1>
+<div class="content2">
+    <div class="inset">
+        <p>
+            <img th:src="'/images/panopset.png'" src="../../../../raw/images/panopset.png" alt="PANOPSET"/>
+        </p>
+
+
+        <h1>
+            Applications
+        </h1>
+
+
+        <table>
+
+            <tr>
+                <th>Utilities</th><th>Web</th>
+                <th><a href="/download">Desk</a></th><th>&nbsp;</th>
+                <th>Description</th>
+            </tr>
+
+            <tr>
+                <td><a href="/flywheel">Flywheel</a></td>
+                <td>&bull;</td>
+                <td>&bull;</td>
+                <td>&nbsp;</td>
+                <td>Freeform template processing engine.  (Note that the web does not have the file processing capabilities of the desktop.)</td>
+            </tr>
+
+            <tr>
+                <td><a href="/lowerclass">Lowerclass</a></td>
+                <td>&nbsp;</td>
+                <td>&bull;</td>
+                <td>&nbsp;</td>
+                <td>Determine minimum Java Version for a class, jar, or repository.</td>
+            </tr>
+
+            <tr>
+                <th>Security</th><th>Web</th><th><a href="/download">Desk</a></th><th>&nbsp;</th><th>&nbsp;</th>
+            </tr>
+
+            <tr>
+                <td><a href="/scrambler">Scrambler</a></td>
+                <td>&bull;</td>
+                <td>&bull;</td>
+                <td>&nbsp;</td>
+                <td>Password or pass phrase based text scrambler.</td>
+            </tr>
+
+            <tr>
+                <td><a href="/checksum">Checksum</a></td>
+                <td>&nbsp;</td>
+                <td>&bull;</td>
+                <td>&nbsp;</td>
+                <td>File checksum verification.</td>
+            </tr>
+
+            <tr>
+                <th>Games</th><th>&nbsp;</th><th><a href="/download">Desk</a></th><th><a href="https://play.google.com/store/apps/details?id=com.panopset.droid.games.blackjack">Droid</a></th><th>&nbsp;</th>
+            </tr>
+
+            <tr>
+                <td><a href="/blackjack">Blackjack</a></td>
+                <td>&nbsp;</td>
+                <td>&bull;</td>
+                <td>&bull;</td>
+                <td>Blackjack simulation, with fast deal option.  Droid version featured on
+                    <a href="https://gameskeys.net/hidden-gems-top-card-games-to-play/">
+                        gameskeys.net</a>.</td>
+            </tr>
+
+        </table>
+
+        <hr/>
+
+        <h2>Featured feature</h2>
+        <ul><li>
+            <a href="https://github.com/panopset/src/blob/main/docs/uses/gblrpl/priorLineCheck.md">Global Replace Prior Line Check</a>.
+        </li></ul>
+
+    </div>
+</div>
+
+</div>
+
+<div th:replace="fragments/footer :: google_stats" th:remove="tag"></div>
 
 </body>
 </html>

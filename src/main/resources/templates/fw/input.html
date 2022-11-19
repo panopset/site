@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"><head><title>Panopset</title>
+<link rel="stylesheet" href="../../../../../../../html/css/a.css" type="text/css">
+</head>
+<body th:object="${fwInput}">
+
+<div th:fragment="ctlfrg">
+ <div class="tbl">
+  <div class="row">
+    <button type="button" onclick="showHelp()">Help</button>
+    <label for="samples">Samples:&nbsp;</label>
+     <select name="samples" id="samples">
+     <option>Choose</option>
+     <option th:each="fws: ${fwss}"         
+      th:data-listText="${fws.listText}"
+      th:data-templateText="${fws.templateText}"
+      th:data-tokens="${fws.tokens}"
+      th:data-splitz="${fws.splitz}"
+      th:data-lineBreaks="${fws.lineBreaks}"
+      th:data-listBreaks="${fws.listBreaks}"
+     th:text="${fws.desc}"
+     ></option>
+    </select>
+   <button type="button" onClick="clearAllFields()">Clear</button>
+   <button type="button" onClick="filterLines()">Filter</button>
+  </div>
+  <div class="row">
+   <div class="cellh">
+    <label th:for="${#ids.next('lineBreakStr')}"><input th:field="*{lineBreakStr}" th:value="lineBreakStr" onchange="refreshResult()" type="checkbox">Line breaks.</label>
+     <br/>
+    <label th:for="${#ids.next('listBreakStr')}"><input th:field="*{listBreakStr}" th:value="listBreakStr" onchange="refreshResult()" type="checkbox">List breaks.</label>
+   </div>
+   <div>
+    <label for="functions">Append function:&nbsp;</label>
+    <select name="functions" id="functions">
+     <option>Choose</option>
+     <option th:each="fwf: ${fwfs}"
+      th:data-functionExample="${fwf.example}"
+      th:text="${fwf.key}"
+     ></option>
+    </select>
+    <br/>
+    <label>
+     Token(s):
+     <input type="text" id="tokens" th:field="*{tokens}" onchange="refreshResult();" />
+    </label>
+    <label>
+     Split(s):
+     <input type="text" id="splitz" th:field="*{splitz}" onchange="refreshResult();" />
+    </label>
+   </div>
+  </div>
+ </div>
+
+</div>
+
+</body></html>

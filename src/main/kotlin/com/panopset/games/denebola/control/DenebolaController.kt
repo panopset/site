@@ -1,7 +1,10 @@
-package com.panopset.games.denebola
+package com.panopset.games.denebola.control
 
 import com.google.gson.Gson
+import com.panopset.games.denebola.Tronk
 import com.panopset.site.*
+import com.panopset.site.control.Config
+import com.panopset.site.control.PanBase
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -13,7 +16,7 @@ import javax.servlet.http.HttpServletResponse
 
 @Controller
 class DenebolaController(private val config: Config, private val panBase: PanBase) {
-    @GetMapping(*["/denebola"])
+    @GetMapping(*["/denebola.html", "/denebola"])
     fun denebola(model: Model?, response: HttpServletResponse?): String? {
         if (model != null) {
             panInit(model)
@@ -22,21 +25,21 @@ class DenebolaController(private val config: Config, private val panBase: PanBas
         return "denebola/denebola"
     }
 
-    @GetMapping("/denebola/hsl")
+    @GetMapping("/denebola_hsl.html")
     fun highScoreList(model: Model?, response: HttpServletResponse?): String? {
         if (model != null) {
             panInit(model)
         }
-        return "denebola/hsl"
+        return "denebola/denebola_hsl"
     }
 
-    @GetMapping("/denebola/config")
+    @GetMapping("/denebola_config.html")
     fun config(model: Model?, response: HttpServletResponse?): String? {
         if (model != null) {
             panInit(model)
             model.addAttribute("svr", SystemPropertyMap.map)
         }
-        return "denebola/config"
+        return "denebola/denebola_config"
     }
 
     private fun getRandomHexString(numchars: Int): String? {

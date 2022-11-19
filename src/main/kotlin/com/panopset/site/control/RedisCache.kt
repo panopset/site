@@ -1,5 +1,7 @@
-package com.panopset.site
+package com.panopset.site.control
 
+import com.panopset.site.RedisClientAPI
+import com.panopset.site.RedisClientJedisImpl
 import org.springframework.stereotype.Component
 
 @Component

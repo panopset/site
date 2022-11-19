@@ -3,13 +3,14 @@
 <head>
     <link rel="stylesheet" href="../../../../../raw/css/pansite.css" type="text/css">
     <script src="../../../../../raw/js/jquery.js"></script>
-    <script src=../../../../../raw/js/pansite.js"></script>
+    <script src="../../../../../raw/js/pansite.js"></script>
+    <script src="../../../../../raw/js/clock.js"></script>
     <title>Panopset</title>
 </head>
 
-<div style="height: 32px" th:fragment="menuBarFragment">
+<div class="pad0" style="height: 32px" th:fragment="menuBarFragment">
     <nav class="menuBar">
-        <ul>
+        <ul class="pad0">
             <li class="pad0 index">
                 <a href="./home">
                 <img id="panopset32" th:src="'/images/favicon-32.png'" src="../../../../../raw/images/favicon-32.png" alt="PANOPSET"/>
@@ -17,25 +18,38 @@
             </li>
             <li><div class="menuSeparator">&nbsp;</div></li>
             <li><div class="menuSeparator">&nbsp;</div></li>
-            <li><a href="../index.html" th:href="'/'">Home</a></li>
-            <li><div class="menuSeparator">&nbsp;</div></li>
-            <li class="padLeft linkDown">
-                <a href="#">Games</a>
+            <li class="padLeft linkDown"><a href="#">web <span>&#8227;</span></a>
                 <ul>
-                    <li>bar</li>
-                    <li>bat</li>
+                    <li><a href="./flywheel">flywheel</a></li>
+                    <li><a href="./scrambler">scrambler</a></li>
+                    <!--<li><a href="./denebola">denebola</a></li>-->
                 </ul>
             </li>
             <li><div class="menuSeparator">&nbsp;</div></li>
-            <li>foo</li>
+            <li class="padLeft linkDown"><a href="#">app <span>&#8227;</span></a>
+                <ul>
+                    <li><a href="./checksum">checksum</a></li>
+                    <li><a href="./lowerclass">lowerclass</a></li>
+                    <li><a href="./blackjack">blackjack</a></li>
+                </ul>
+            </li>
             <li><div class="menuSeparator">&nbsp;</div></li>
+            <li class="padLeft linkDown"><a href="#">nav <span>&#8227;</span></a>
+                <ul>
+                    <li><a href="./desk">desktop applications</a></li>
+                    <li><a href="./build">building your own</a></li>
+                    <li><a href="./about">panopset</a></li>
+                    <li><a href="./news">news</a></li>
+                    <li><a href="./download">download</a></li>
+                    <li><a href="./lynx">lynx</a></li>
+                </ul>
+            <li><div class="menuSeparator">&nbsp;</div></li>
+            <li>
+                <button id="ptoggle" onclick="toggleScreens()">printer</button>
+            </li>
+            <li style="float: right">
+                <span id="clock"></span><script>startTime();</script>
+            </li>
         </ul>
     </nav>
-    <p>
-        <a href="../index.html" th:href="'/'">Home</a> ~
-        <a href="../denebola/denebola.html" th:href="'/denebola'">Denebola</a> ~
-        <a href="../denebola/hsl.html" th:href="'/denebola/hsl'">High Score List</a> ~
-        <a href="../denebola/config.html" th:href="'/denebola/config'">Configuration</a>
-        <button id="ptoggle" onclick="toggleScreens()">printer</button>
-    </p>
 </div></html>

@@ -8,17 +8,16 @@
 </head>
 <body>
 
-<div th:replace="fragments/nav :: menuBarFragment">
-    <nav class="menubar">
-        <p>
-            <a href="../index.html">Home</a> ~
-            <a href="denebola.html">Denebola</a> ~
-            <a href="./hsl.html">High Score List</a> ~
-            <a href="./config.html">Configuration</a>
-            <button id="ptoggle" onclick="toggleScreens()">printer</button>
-        </p>
-    </nav>
-</div>
+
+<p>
+    <a th:href="'/'" href="../index.html">
+        <img id="panopset32" th:src="'/images/favicon-32.png'" src="../../../../../raw/images/favicon-32.png" alt="PANOPSET"/>
+    </a>
+    <a href="./denebola.html">Denebola</a> ~
+    <a href="./denebola_hsl.html">High Score List</a> ~
+    <a href="./denebola_config.html">Configuration</a>
+</p>
+
 
 <h1>Denebola High Score List</h1>
 

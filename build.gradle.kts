@@ -20,6 +20,7 @@ configurations {
 }
 
 repositories {
+	mavenLocal()
 	mavenCentral()
 }
 
@@ -32,6 +33,7 @@ dependencies {
 	implementation("org.springframework.session:spring-session-core")
 	implementation("redis.clients:jedis:4.3.1")
 	implementation("org.springframework.boot:spring-boot-configuration-processor")
+	implementation("com.panopset:flywheel:1.1.0")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
@@ -53,3 +55,4 @@ tasks {
 		archiveFileName.set("site.jar")
 	}
 }
+

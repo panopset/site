@@ -14,9 +14,9 @@ function setScreen() {
     document.documentElement.style.setProperty('--bgd000', '#000');
     document.documentElement.style.setProperty('--bgd001', '#036');
     document.documentElement.style.setProperty('--bgd002', '#666');
-    document.documentElement.style.setProperty('--fgd000', '#cf0');
-    document.documentElement.style.setProperty('--fgd001', '#ff0');
-    document.documentElement.style.setProperty('--fgd002', '#ccc');
+    document.documentElement.style.setProperty('--fgd000', '#cfc');
+    document.documentElement.style.setProperty('--fgd001', '#9df');
+    document.documentElement.style.setProperty('--fgd002', '#33b');
 }
 
 function setPrinter() {
