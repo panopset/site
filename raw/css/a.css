@@ -1,5 +1,4 @@
 body {
- margin: 1px;
  height: 99%;
 }
 
@@ -48,7 +47,6 @@ a:active {
 
 .pad0 {
  padding: 0px;
- height: 32px;
 }
 
 .padl {
@@ -173,8 +171,8 @@ tbody {
 }
 
 div.content {
+ display: inline;
  flex: 1;
- height: 100%;
  border: 1px solid var(--border);
 }
 

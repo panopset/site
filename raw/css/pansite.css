@@ -80,7 +80,7 @@ nav.menuBar ul li ul {
  transition: all 0.5s ease;
  left: 0;
  display: none;
- padding: 1rem;
+ padding: 0px;
 }
 
 nav.menuBar ul li:hover > ul,
@@ -101,6 +101,7 @@ nav.menuBar ul li ul li ul li{
 
 .menuBar {
  background: var(--bgd001);
+ height: 32px
 }
 
 .linkDown span {
@@ -120,4 +121,10 @@ nav.menuBar ul li ul li ul li{
 
 #clock {
  font-family: sans-serif;
+}
+
+#bnr0 {
+ background-color: var(--bgd000);
+ color: var(--fgd000);
+ height: 32px;
 }
