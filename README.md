@@ -35,5 +35,9 @@ and/or
 * Maven 3.8.6
 
 
+## Dependencies
+
+Build the Panopset [desktop](https://github.com/panopset/src) project on your development PC.
+
 
 # [Deploy](docs/deploy.md)ment instructions

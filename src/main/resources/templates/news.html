@@ -1,22 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head th:replace="fragments/header :: headFragment">
- <meta name="viewport" content="width=device-width, initial-scale=1">
- <title>Panopset</title>
- <link rel="shortcut icon" href="../../../../../../html/images/favicon-32.png" />
- <link rel="stylesheet" href="../../../../../../html/css/a.css" type="text/css">
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
- <script src="../../../../../../html/js/a.js"></script>
-</head><body class="borderline" onload="initPage()">
+<head>
+ <title>Panopset News</title>
+ <link rel="shortcut icon" href="../../../../raw/images/favicon-32.png" th:href="'images/favicon-32.png'" />
+ <link rel="stylesheet" href="../../../../raw/css/pansite.css" th:href="'/css/pansite.css'" type="text/css"/>
+ <script src="../../../../raw/js/jquery.js" th:src="'/js/jquery.js'"></script>
+ <script src="../../../../raw/js/pansite.js" th:src="'/js/pansite.js'"></script>
+ <script src="../../../../raw/js/clock.js" th:src="'/js/clock.js'"></script>
+</head>
+<body>
 
-<div class="mainfc">
 <div th:replace="fragments/nav :: menuBarFragment">
-<p>
-fragments/nav :: menuBarFragment
-</p>
+ <p>
+  fragments/nav :: menuBarFragment
+ </p>
 </div>
-
-<div class="content2">
 
 <div class="inset">
 <h1>News</h1>
@@ -37,8 +35,6 @@ gameskeys.net</a>!
 </p>
 </div>
 
-</div>
-</div>
 
 <div th:replace="fragments/footer :: google_stats" th:remove="tag"></div>
 
