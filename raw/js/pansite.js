@@ -12,11 +12,11 @@ function toggleScreens() {
 function setScreen() {
     scz = "screen"
     document.documentElement.style.setProperty('--bgd000', '#000');
-    document.documentElement.style.setProperty('--bgd001', '#036');
-    document.documentElement.style.setProperty('--bgd002', '#666');
+    document.documentElement.style.setProperty('--bgd001', '#024');
+    document.documentElement.style.setProperty('--bgd002', '#011');
     document.documentElement.style.setProperty('--fgd000', '#cfc');
     document.documentElement.style.setProperty('--fgd001', '#9df');
-    document.documentElement.style.setProperty('--fgd002', '#33b');
+    document.documentElement.style.setProperty('--fgd002', '#fff');
 }
 
 function setPrinter() {

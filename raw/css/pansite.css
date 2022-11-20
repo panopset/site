@@ -1,10 +1,10 @@
 :root {
     --bgd000: #000;
-    --bgd001: #036;
-    --bgd002: #666;
+    --bgd001: #024;
+    --bgd002: #011;
     --fgd000: #cfc;
     --fgd001: #9df;
-    --fgd002: #33b;
+    --fgd002: #fff;
 }
 
 html {
@@ -70,12 +70,12 @@ nav.menuBar ul {
 }
 
 nav.menuBar li:hover {
- background: var(--bgd002);
+ background: var(--bgd001);
  cursor: pointer;
 }
 
 nav.menuBar ul li ul {
- background: var(--bgd002);
+ background: var(--bgd001);
  visibility: hidden;
  opacity: 0;
  min-width: 25rem;
