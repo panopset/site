@@ -45,7 +45,7 @@ class DeskPageController(private val config: Config) {
             for (platform in PLATFORMS) {
                 var cil: List<NameValuePair?> = ArrayList()
                 val pci =
-                    UrlHelper.getTextFromURL(String.format("%s/gen/json/pci_%s.json", config.host, platform))
+                    UrlHelper.getTextFromURL(String.format("%s/dt/gen/json/pci_%s.json", config.host, platform))
                 if (Stringop.isPopulated(pci)) {
                     cil = Jsonop().fromJson(pci, cil.javaClass) as List<NameValuePair?>
                     safeAdd(arrayOf(platform, "panopset.jar"),
@@ -60,7 +60,7 @@ class DeskPageController(private val config: Config) {
             installerMap = Collections.synchronizedSortedMap(TreeMap())
             for (installers in INSTALLERS) {
                 var cil: List<NameValuePair> = ArrayList()
-                val url = String.format("%s/gen/json/pci_%s.json", config.host, installers[1])
+                val url = String.format("%s/dt/gen/json/pci_%s.json", config.host, installers[1])
                 Logop.info(String.format("%s : %s, %s", installers[0], installers[1], url))
                 val pci = UrlHelper.getTextFromURL(url)
                 if (Stringop.isPopulated(pci)) {

@@ -32,7 +32,7 @@ If you do not see an installer for your platform, you may <a href="./build">buil
 <tr class="dswidth100">
  <td class="dsnw" th:text="${map.key}">PLATFORM</td>
  <td class="dsnw" th:text="${map.value[1].value}">BYTES</td>
- <td class="dsnw" ><a href="link" th:href="'/installers/' + ${map.value[3].value}" th:text="${map.value[3].value}">DOWNLOAD</a></td>
+ <td class="dsnw" ><a href="link" th:href="'/dt/installers/' + ${map.value[3].value}" th:text="${map.value[3].value}">DOWNLOAD</a></td>
  <td class="dsnw" th:text="${map.value[0].value}"></td>
  <td class="dsw99" colspan="2"><input class="output2" type="text" th:value="${map.value[2].value}"/></td>
 </tr>
@@ -72,7 +72,7 @@ panopset.jar downloads are available for these platforms:
 <tr class="dswidth100">
  <td class="dsnw" th:text="${map.key}"></td>
  <td class="dsnw" th:text="${map.value[1].value}"></td>
- <td class="dsnw"><a href="link" th:href="'/downloads/' + ${map.key} + '/' + ${map.value[3].value}" th:text="${map.value[3].value}">DOWNLOAD</a></td>
+ <td class="dsnw"><a href="link" th:href="'/dt/downloads/' + ${map.key} + '/' + ${map.value[3].value}" th:text="${map.value[3].value}">DOWNLOAD</a></td>
  <td class="dsnw" th:text="${map.value[0].value}"></td>
  <td class="dsw99" colspan="2"><input class="output2" type="text" th:value="${map.value[2].value}"/></td>
 </tr>

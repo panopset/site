@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse
 
 @Controller
 class DenebolaController(private val config: Config, private val panBase: PanBase, private val systemPropertyMap: SystemPropertyMap) {
-    @GetMapping(*["/denebola.html", "/denebola"])
+    @GetMapping(*["/denebola"])
     fun denebola(model: Model?, response: HttpServletResponse?): String? {
         if (model != null) {
             panInit(model)
@@ -26,7 +26,7 @@ class DenebolaController(private val config: Config, private val panBase: PanBas
         return "denebola/denebola"
     }
 
-    @GetMapping("/denebola_hsl.html")
+    @GetMapping("/denebola_hsl")
     fun highScoreList(model: Model?, response: HttpServletResponse?): String? {
         if (model != null) {
             panInit(model)
@@ -34,7 +34,7 @@ class DenebolaController(private val config: Config, private val panBase: PanBas
         return "denebola/denebola_hsl"
     }
 
-    @GetMapping("/denebola_config.html")
+    @GetMapping("/denebola_config")
     fun config(model: Model?, response: HttpServletResponse?): String? {
         if (model != null) {
             panInit(model)

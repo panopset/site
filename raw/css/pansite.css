@@ -7,6 +7,9 @@
     --fgd002: #33b;
 }
 
+html {
+ background-color: var(--bgd002)
+}
 body {
  background-color: var(--bgd000);
  color: var(--fgd000);
