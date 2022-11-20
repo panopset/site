@@ -9,4 +9,5 @@ import org.springframework.context.annotation.Configuration
 @ConfigurationProperties(prefix="com.panopset")
 class Config() {
     lateinit var env: String
+    lateinit var host: String
 }

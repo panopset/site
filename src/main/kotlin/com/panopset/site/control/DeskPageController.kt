@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
 @Controller
-class DeskPageController {
+class DeskPageController(private val config: Config) {
 
     val HOMEDIRPFX = "homedirpfx"
     val USERPATHSEP = "userpathsep"
@@ -45,7 +45,7 @@ class DeskPageController {
             for (platform in PLATFORMS) {
                 var cil: List<NameValuePair?> = ArrayList()
                 val pci =
-                    UrlHelper.getTextFromURL(String.format("http://127.0.0.1/gen/json/pci_%s.json", platform))
+                    UrlHelper.getTextFromURL(String.format("%s/gen/json/pci_%s.json", config.host, platform))
                 if (Stringop.isPopulated(pci)) {
                     cil = Jsonop().fromJson(pci, cil.javaClass) as List<NameValuePair?>
                     safeAdd(arrayOf(platform, "panopset.jar"),
@@ -60,7 +60,7 @@ class DeskPageController {
             installerMap = Collections.synchronizedSortedMap(TreeMap())
             for (installers in INSTALLERS) {
                 var cil: List<NameValuePair> = ArrayList()
-                val url = String.format("http://127.0.0.1/gen/json/pci_%s.json", installers[1])
+                val url = String.format("%s/gen/json/pci_%s.json", config.host, installers[1])
                 Logop.info(String.format("%s : %s, %s", installers[0], installers[1], url))
                 val pci = UrlHelper.getTextFromURL(url)
                 if (Stringop.isPopulated(pci)) {

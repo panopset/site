@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
 @Controller
-class SiteController(private val config: Config, private val panBase: PanBase) {
+class SiteController {
 
     @GetMapping(*["/", "/home", "/index", "/index.htm", "/index.html"])
     fun home(model: Model?, response: HttpServletResponse?): String? {

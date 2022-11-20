@@ -1,8 +1,10 @@
-package com.panopset.site
+package com.panopset.site.control
 
-class SystemPropertyMap {
+import org.springframework.stereotype.Component
 
-    companion object {
+@Component
+class SystemPropertyMap(private val config: Config) {
+
         val map = HashMap<String, String>()
         init {
             map["Runtime"] = System.getProperty("java.version")
@@ -15,6 +17,6 @@ class SystemPropertyMap {
             map["OS Arch"] = System.getProperty("os.arch")
             map["OS Name"] = System.getProperty("os.name")
             map["OS Version"] = System.getProperty("os.version")
+            map["Host"] = config.host
         }
-    }
 }

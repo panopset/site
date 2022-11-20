@@ -5,6 +5,7 @@ import com.panopset.games.denebola.Tronk
 import com.panopset.site.*
 import com.panopset.site.control.Config
 import com.panopset.site.control.PanBase
+import com.panopset.site.control.SystemPropertyMap
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -15,7 +16,7 @@ import java.util.*
 import javax.servlet.http.HttpServletResponse
 
 @Controller
-class DenebolaController(private val config: Config, private val panBase: PanBase) {
+class DenebolaController(private val config: Config, private val panBase: PanBase, private val systemPropertyMap: SystemPropertyMap) {
     @GetMapping(*["/denebola.html", "/denebola"])
     fun denebola(model: Model?, response: HttpServletResponse?): String? {
         if (model != null) {
@@ -37,7 +38,7 @@ class DenebolaController(private val config: Config, private val panBase: PanBas
     fun config(model: Model?, response: HttpServletResponse?): String? {
         if (model != null) {
             panInit(model)
-            model.addAttribute("svr", SystemPropertyMap.map)
+            model.addAttribute("svr", systemPropertyMap.map)
         }
         return "denebola/denebola_config"
     }
@@ -75,6 +76,7 @@ class DenebolaController(private val config: Config, private val panBase: PanBas
 
     private fun panInit(model: Model) {
         model.addAttribute("env", config.env)
+        model.addAttribute("host", config.host)
         model.addAttribute("redis_url", REDIS_URL)
         model.addAttribute("redis_pwd", REDIS_PWD)
     }
