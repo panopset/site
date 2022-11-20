@@ -36,18 +36,18 @@ class DeskPageController(private val config: Config) {
         return "download"
     }
 
-    private var panopsetJarMap: Map<String?, List<NameValuePair>>?? = null
-    private var installerMap: MutableMap<String, List<NameValuePair>>? = null
+    private var panopsetJarMap: Map<String, List<NameValuePair>> = Collections.synchronizedSortedMap(TreeMap())
+    private var installerMap: MutableMap<String, List<NameValuePair>> = Collections.synchronizedSortedMap(TreeMap())
 
-    private fun getPanopsetJarValidationMap(): Map<String?, List<NameValuePair?>?>? {
-        if (panopsetJarMap == null) {
-            panopsetJarMap = Collections.synchronizedSortedMap(TreeMap<String, List<NameValuePair>>())
+    private fun getPanopsetJarValidationMap(): Map<String, List<NameValuePair>> {
+        if (panopsetJarMap.isEmpty()) {
             for (platform in PLATFORMS) {
-                var cil: List<NameValuePair?> = ArrayList()
+                var cil: List<NameValuePair> = ArrayList()
                 val pci =
                     UrlHelper.getTextFromURL(String.format("%s/dt/gen/json/pci_%s.json", config.host, platform))
                 if (Stringop.isPopulated(pci)) {
-                    cil = Jsonop().fromJson(pci, cil.javaClass) as List<NameValuePair?>
+                    @Suppress("UNCHECKED_CAST")
+                    cil = Jsonop().fromJson(pci, cil.javaClass) as List<NameValuePair>
                     safeAdd(arrayOf(platform, "panopset.jar"),
                         panopsetJarMap as SortedMap<String, List<NameValuePair>>, cil)
                 }
@@ -55,17 +55,18 @@ class DeskPageController(private val config: Config) {
         }
         return panopsetJarMap
     }
-    private fun getInstallerValidationMap(): Map<String, List<NameValuePair>>? {
-        if (installerMap == null) {
-            installerMap = Collections.synchronizedSortedMap(TreeMap())
+
+    private fun getInstallerValidationMap(): Map<String, List<NameValuePair>> {
+        if (installerMap.isEmpty()) {
             for (installers in INSTALLERS) {
                 var cil: List<NameValuePair> = ArrayList()
                 val url = String.format("%s/dt/gen/json/pci_%s.json", config.host, installers[1])
                 Logop.info(String.format("%s : %s, %s", installers[0], installers[1], url))
                 val pci = UrlHelper.getTextFromURL(url)
                 if (Stringop.isPopulated(pci)) {
+                    @Suppress("UNCHECKED_CAST")
                     cil = Jsonop().fromJson(pci, cil.javaClass) as List<NameValuePair>
-                    if (cil == null || cil.isEmpty()) {
+                    if (cil.isEmpty()) {
                         Logop.dspmsg(String.format("URL found, but still unable to load installers from %s.", url))
                     }
                     safeAdd(installers, installerMap, cil)
@@ -79,13 +80,13 @@ class DeskPageController(private val config: Config) {
 
     private fun safeAdd(
         definition: Array<String>,
-        map: MutableMap<String, List<NameValuePair>>?,
-        value: List<NameValuePair?>
+        map: MutableMap<String, List<NameValuePair>>,
+        value: List<NameValuePair>
     ) {
-        if (value != null && value.size > 3) {
-            map!![definition[0]] = value as List<NameValuePair>
+        if (value.size > 3) {
+            map[definition[0]] = value
         } else {
-            map!![definition[0]] = createDummyList(definition[1])
+            map[definition[0]] = createDummyList(definition[1])
         }
     }
 

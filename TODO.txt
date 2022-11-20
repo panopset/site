@@ -33,3 +33,4 @@ exclude vaadin
 ******************************************
 
 * restructure scrambler (box fill again) and flywheel css layouts.
+* move redis client to desk.
