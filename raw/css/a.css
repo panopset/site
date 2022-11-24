@@ -15,31 +15,6 @@ textarea {
  color: var(--panfgtxt); background-color: var(--panbgtxt);
 }
 
-a {
- color: var(--mfg);
- text-decoration: none;
-}
-
-a:link {
- color: var(--mfg);
- text-decoration: none;
-}
-
-a:visited {
- text-decoration: var(--lnktd0);
- border:1px solid var(--fgd);
-}
-
-a:hover {
- text-decoration: var(--lnktd1);
- background-color:var(--menu_hover);
-}
-
-a:active {
- text-decoration: var(--lnktd1);
- border:1px solid var(--fgd);
-}
-
 .linkdown span {
  display: inline-block;
  transform: rotate(90deg);
