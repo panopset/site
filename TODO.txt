@@ -17,7 +17,6 @@ exclude vaadin
 
 * Low priority
 
- - static content independence.
  - docker, other ideas for scalability.
 
 ******************************************

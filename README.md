@@ -1,6 +1,6 @@
 # site
 
-Panopset site source code.
+Panopset website source code.
 
 
 # Development PC Requirements
@@ -37,7 +37,7 @@ and/or
 
 ## Dependencies
 
-Build the Panopset [desktop](https://github.com/panopset/src) project on your development PC.
+Build the Panopset [src](https://github.com/panopset/src) project on your development PC.
 
 
 # [Deploy](docs/deploy.md)ment instructions
