@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "com.panopset"
-version = "1.1"
+version = "1.2.2"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 configurations {
@@ -28,12 +28,12 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-	implementation("org.jetbrains.kotlin:kotlin-reflect")
-	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+	implementation("org.jetbrains.kotlin:kotlin-reflect:1.7.21")
+	implementation("org.jetbrains.kotlin:kotlin-stdlib:1.7.21")
 	implementation("org.springframework.session:spring-session-core")
 	implementation("redis.clients:jedis:4.3.1")
 	implementation("org.springframework.boot:spring-boot-configuration-processor")
-	implementation("com.panopset:flywheel:1.1.0")
+	implementation("com.panopset:flywheel:1.2.2")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
