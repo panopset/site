@@ -11,7 +11,11 @@ Tested on a recent Linux mint system.
 
 ## Environment Variables
 
-Set up these environment variables on your development PC, on Linux Mint it can be done in ~/.profile:
+Set up these environment variables on your development PC.
+
+* on Linux Mint it can be done in ~/.profile.
+* on Macs it can be done in ~/.zshrc.
+* on Windows you'd make them profile environment variables.
 
 
     export PANOPSET_SITE_DN=<your site deployment domain name, ie: panopset.com.>
