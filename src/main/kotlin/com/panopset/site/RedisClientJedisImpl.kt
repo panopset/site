@@ -43,7 +43,11 @@ class RedisClientJedisImpl : RedisClientAPI {
     override fun get(key: String): String {
         try {
             val jedis = jedisPool.resource
-            return jedis.get(key)
+            return if (jedis.exists(key)) {
+                jedis.get(key)
+            } else {
+                ""
+            }
         } catch (t: Throwable) {
             jedisError = t.message ?: ""
         }

@@ -1,6 +1,8 @@
 package com.panopset.games.denebola.control
 
 import com.google.gson.Gson
+import com.panopset.compat.Jsonop
+import com.panopset.games.denebola.Toard
 import com.panopset.games.denebola.Tronk
 import com.panopset.site.*
 import com.panopset.site.control.Config
@@ -13,10 +15,14 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import java.util.*
+import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
 @Controller
 class DenebolaController(private val config: Config, private val panBase: PanBase, private val systemPropertyMap: SystemPropertyMap) {
+
+    val gameKey = "gameKey"
+
     @GetMapping(*["/denebola"])
     fun denebola(model: Model?, response: HttpServletResponse?): String? {
         if (model != null) {
@@ -35,9 +41,25 @@ class DenebolaController(private val config: Config, private val panBase: PanBas
     }
 
     @GetMapping("/denebola_config")
-    fun config(model: Model?, response: HttpServletResponse?): String? {
+    fun config(model: Model?, request: HttpServletRequest, response: HttpServletResponse?): String? {
         if (model != null) {
             panInit(model)
+
+            request.localName
+
+            systemPropertyMap.map["request localName"] = request.localName ?: "undefined"
+            systemPropertyMap.map["request localAddr"] = request.localAddr ?: "undefined"
+            systemPropertyMap.map["request remoteAddr"] = request.remoteAddr ?: "undefined"
+            systemPropertyMap.map["request remoteUser"] = request.remoteUser ?: "undefined"
+            systemPropertyMap.map["request remoteHost"] = request.remoteHost ?: "undefined"
+            systemPropertyMap.map["session ID"] = request.session?.id ?: "undefined"
+
+            for (headerName in request.headerNames) {
+
+                systemPropertyMap.map["request header $headerName"] = request.getHeader(headerName)
+            }
+
+
             model.addAttribute("svr", systemPropertyMap.map)
         }
         return "denebola/denebola_config"
@@ -52,26 +74,59 @@ class DenebolaController(private val config: Config, private val panBase: PanBas
         return sb.toString().substring(0, numchars)
     }
 
-    @PostMapping("/denebola/ajaxGetTarget")
-    fun getResult(@RequestBody tronk: Tronk, response: HttpServletResponse?): ResponseEntity<String?>? {
-        if (tronk.id.isNotBlank()) {
-            val jsonString = panBase.rc.get(tronk.id)
-            if (jsonString.isNotBlank()) {
-                val newTronk = Gson().fromJson(jsonString, Tronk::class.java)
-                // TODO: make whatever adjustments to existing
-                return ResponseEntity.ok(Gson().toJson(newTronk))
-            }
-        }
+    private fun createInitialToard(sessionId: String): Toard {
+        val toard = Toard()
+        val tronk = Tronk()
         tronk.id = UUID.randomUUID().toString()
+        tronk.owner = sessionId
         val random3hex = getRandomHexString(3)
         tronk.fill = "#${random3hex}"
-        val tronkJson = Gson().toJson(tronk)
-        panBase.rc.put(tronk.id, tronkJson)
+        tronk.stroke = "#f0f"
+        tronk.x = 120
+        tronk.y = 300
+        tronk.r = 40
+        tronk.tx = 120
+        tronk.ty = 300
+        toard.tronks.add(tronk)
+        return toard
+    }
+
+    private fun getToard(sessionId: String): Toard {
+        val jsonString = panBase.rc.get(gameKey)
+        var toard: Toard?
+        if (jsonString.isBlank()) {
+            toard = createInitialToard(sessionId)
+            panBase.rc.put(gameKey, Jsonop().toJson(toard))
+        } else {
+            toard = Jsonop().fromJson(jsonString, Toard::class.java) as Toard?
+            if (toard == null) {
+                toard = createInitialToard(sessionId)
+            }
+        }
+        return toard
+    }
+
+    @GetMapping("/denebola/ajaxInit")
+    fun gameInit(request: HttpServletRequest, response: HttpServletResponse?): ResponseEntity<String?>? {
+        return ResponseEntity.ok(Jsonop().toJson(getToard(request.session.id)))
+    }
+
+    @PostMapping("/denebola/ajaxGetTarget")
+    fun getResult(@RequestBody userTronk: Tronk, request: HttpServletRequest, response: HttpServletResponse?): ResponseEntity<String?>? {
+        val toard = getToard(request.session.id)
+        for (tronk in toard.tronks) {
+            if (tronk.id == userTronk.id) {
+                val random3hex = getRandomHexString(3)
+                tronk.fill = "#${random3hex}"
+                saveToard(toard)
+                return ResponseEntity.ok(Jsonop().toJson(tronk))
+            }
+        }
         val errorMsg = panBase.rc.getError()
         if (errorMsg.isNotEmpty()) {
             ResponseEntity.internalServerError().body(errorMsg)
         }
-        return ResponseEntity.ok(tronkJson)
+        return ResponseEntity.ok("")
     }
 
     private fun panInit(model: Model) {
@@ -79,5 +134,9 @@ class DenebolaController(private val config: Config, private val panBase: PanBas
         model.addAttribute("host", config.host)
         model.addAttribute("redis_url", REDIS_URL)
         model.addAttribute("redis_pwd", REDIS_PWD)
+    }
+
+    private fun saveToard(toard: Toard) {
+        panBase.rc.put(gameKey, Jsonop().toJson(toard))
     }
 }

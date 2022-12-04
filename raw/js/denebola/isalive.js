@@ -1,11 +1,60 @@
+function initGame() {
 
-function createOrb(s, x, y, r) {
+
+
+    const s = Snap(1000, 600);
+
+
+
+
+    //var c0 = createOrb(s, 240, 50, 50);
+
+//    c0.circle.attr({
+//        fill: "#ff0",
+//        stroke: "#f00",
+//        strokeWidth: 1
+//    });
+
+ $.ajax({
+  type: "GET",
+  contentType : 'application/json; charset=utf-8',
+  url: "/denebola/ajaxInit",
+   success: function(msg) {
+        const toard = JSON.parse(msg)
+        if (toard.tronks.length > 0) {
+         const tronk = toard.tronks[0]
+         c0 = createOrb(s, tronk)
+         c0.circle.attr({
+                       fill: tronk.fill,
+                       stroke: tronk.stroke,
+                       strokeWidth: 1
+                     });
+        }
+
+
+    c0.circle.mouseover(function () {
+        reportMouseOver(c0)
+    });
+
+
+    },
+    error: function(xhr) {}
+ });
+
+
+
+
+
+
+
+}
+
+function createOrb(s, tronk) {
  return {
-  circle: s.circle(x,y,r),
+  tronk: tronk,
+  circle: s.circle(tronk.x,tronk.y,tronk.r),
   active: false,
   processing: false,
-  tx: 0,
-  ty: 0,
  }
 }
 
@@ -41,33 +90,23 @@ function loopIn(z0) {
 }
 
 function getTarget(z0) {
- const tronk = {
-  "x": z0.circle.attr('cx'),
-  "y": z0.circle.attr('cy'),
-  "r": z0.circle.attr('r'),
-  "fill": z0.circle.attr('fill'),
-  "stroke": z0.circle.attr('stroke'),
-  "tx": z0.tx,
-  "ty": z0.ty
- };
 
- const bonk = JSON.stringify(tronk)
+ const tronkJson = JSON.stringify(z0.tronk)
 
  $.ajax({
   type: "POST",
   contentType : 'application/json; charset=utf-8',
   url: "/denebola/ajaxGetTarget",
-  data: bonk,
+  data: tronkJson,
    success: function(msg) {
-            const fronk = JSON.parse(msg)
+            const tronk = JSON.parse(msg)
+            z0.tronk = tronk
             z0.circle.attr({
-              fill: fronk.fill,
+              fill: tronk.fill,
               stroke: "#fff",
               strokeWidth: 1
             });
     },
-    error: function(xhr) {
-        //Do Something to handle error
-    }
+    error: function(xhr) {}
  });
 }

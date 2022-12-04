@@ -1,7 +1,7 @@
 [home](../README.md)
 
 Once you have your development system all set up with the environment variables 
-dscribed in the [README.md](../README.md), you're ready to deploy.
+described in the [README.md](../README.md), you're ready to deploy.
 
 These instructions were tested using [Digitalocean](https://digitalocean.com)* Ubuntu Linux.
 

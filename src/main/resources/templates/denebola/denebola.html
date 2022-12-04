@@ -30,27 +30,7 @@
 </div>
 
 <script>
-
-    const s = Snap(1000, 600);
-    const c1 = s.circle(30, 30, 30);
-    const c0 = createOrb(s, 240, 50, 50);
-
-    c0.circle.attr({
-        fill: "#ff0",
-        stroke: "#f00",
-        strokeWidth: 1
-    });
-
-    c0.circle.mouseover(function () {
-        reportMouseOver(c0)
-    });
-
-
-    c1.attr({
-        fill: "#cff"
-    });
-
-
+    initGame();
 </script>
 
 </body>

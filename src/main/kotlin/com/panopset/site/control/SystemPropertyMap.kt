@@ -1,11 +1,12 @@
 package com.panopset.site.control
 
 import org.springframework.stereotype.Component
+import java.util.*
 
 @Component
-class SystemPropertyMap(private val config: Config) {
+class SystemPropertyMap(config: Config) {
 
-        val map = HashMap<String, String>()
+        final val map: SortedMap<String, String> = Collections.synchronizedSortedMap(TreeMap())
         init {
             map["Runtime"] = System.getProperty("java.version")
             map["VM name"] = System.getProperty("java.vm.name")
