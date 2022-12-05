@@ -12,14 +12,8 @@
 </head>
 <body>
 
-<div class>
-    <a th:href="'/'" href="../index.html">
-        <img id="panopset32" th:src="'/images/favicon-32.png'" src="../../../../../raw/images/favicon-32.png" alt="PANOPSET"/>
-    </a>
-    <a href="./denebola">Denebola</a> ~
-    <a href="./denebola_hsl">High Score List</a> ~
-    <a href="./denebola_config">Configuration</on</a>
-</div>
+
+<div th:replace="denebola/nav :: menuBarFragment"></div>
 
 
 <div th:if="${error != ''}">

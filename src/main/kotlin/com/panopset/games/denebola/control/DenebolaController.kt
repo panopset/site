@@ -84,7 +84,7 @@ class DenebolaController(private val config: Config, private val panBase: PanBas
         tronk.stroke = "#f0f"
         tronk.x = 120
         tronk.y = 300
-        tronk.r = 40
+        tronk.r = 10
         tronk.tx = 120
         tronk.ty = 300
         toard.tronks.add(tronk)
@@ -116,8 +116,7 @@ class DenebolaController(private val config: Config, private val panBase: PanBas
         val toard = getToard(request.session.id)
         for (tronk in toard.tronks) {
             if (tronk.id == userTronk.id) {
-                val random3hex = getRandomHexString(3)
-                tronk.fill = "#${random3hex}"
+                tronk.r++
                 saveToard(toard)
                 return ResponseEntity.ok(Jsonop().toJson(tronk))
             }

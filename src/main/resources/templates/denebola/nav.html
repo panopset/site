@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="../../../../../raw/css/pansite.css" type="text/css">
+    <script src="../../../../../raw/js/jquery.js"></script>
+    <script src="../../../../../raw/js/pansite.js"></script>
+    <script src="../../../../../raw/js/clock.js"></script>
+    <title>Panopset</title>
+</head>
+
+<div class="pad0" style="height: 32px" th:fragment="menuBarFragment">
+    <nav class="menuBar">
+        <ul class="pad0">
+            <li id="bnr0">
+                <a href="./home">
+                    <img th:src="'/images/favicon-32.png'" src="../../../../../raw/images/panopset.png" alt="PANOPSET">
+                </a>
+            </li>
+            <li><div class="menuSeparator">&nbsp;</div></li>
+            <li><div class="menuSeparator">&nbsp;</div></li>
+            <li class="padLeft linkDown"><a href="#">Denebola <span>&#8227;</span></a>
+                <ul>
+                    <li><a href="./denebola">&nbsp;&nbsp;Play&nbsp;&nbsp;</a></li>
+                    <li><a href="./denebola_hsl">&nbsp;&nbsp;High Score List&nbsp;&nbsp;</a></li>
+                    <li><a href="./denebola_config">&nbsp;&nbsp;Configuration&nbsp;&nbsp;</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+</html>
