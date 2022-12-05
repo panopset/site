@@ -18,6 +18,8 @@ Set up these environment variables on your development PC.
 * on Windows you'd make them profile environment variables.
 
 
+(this might not render neatly on github, in intellij it looks fine:)
+
 
     export PANOPSET_SITE_DN=your site deployment domain name, ie: panopset.com.
     export PANOPSET_SITE_NAME=corresponds to the Host entry for your deployment site Host entry
