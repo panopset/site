@@ -41,8 +41,8 @@ class RedisClientJedisImpl : RedisClientAPI {
     }
 
     override fun get(key: String): String {
+        val jedis = jedisPool.resource
         try {
-            val jedis = jedisPool.resource
             return if (jedis.exists(key)) {
                 jedis.get(key)
             } else {
@@ -50,16 +50,20 @@ class RedisClientJedisImpl : RedisClientAPI {
             }
         } catch (t: Throwable) {
             jedisError = t.message ?: ""
+        } finally {
+            jedisPool.returnResource(jedis)
         }
         return ""
     }
 
     override fun put(key: String, value: String) {
+        val jedis = jedisPool.resource
         try {
-            val jedis = jedisPool.resource
             jedis.setex(key, 604800, value)
         } catch (t: Throwable) {
             jedisError = t.message ?: ""
+        } finally {
+            jedisPool.returnResource(jedis)
         }
     }
 }

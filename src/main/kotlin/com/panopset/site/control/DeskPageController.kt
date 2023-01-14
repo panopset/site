@@ -15,9 +15,9 @@ class DeskPageController(private val config: Config) {
     val USERPATHSEP = "userpathsep"
     val PLATFORMS = arrayOf("linux", "mac", "win")
     val INSTALLERS = arrayOf(
-        arrayOf("linux", String.format("panopset_%s-1_amd64.deb", "1.2.2")),
-        arrayOf("mac", String.format("panopset-%s.dmg", "1.2.2")),
-        arrayOf("win", String.format("panopset-%s.msi", "1.2.2"))
+        arrayOf("linux", String.format("panopset_%s-1_amd64.deb", "1.2.3")),
+        arrayOf("mac", String.format("panopset-%s.dmg", "1.2.3")),
+        arrayOf("win", String.format("panopset-%s.msi", "1.2.3"))
     )
 
     @GetMapping(*["/desk", "/desk.htm", "/desk.html"])
@@ -28,7 +28,7 @@ class DeskPageController(private val config: Config) {
 
     @GetMapping(*["/download", "/download.htm", "/download.html"])
     fun download(request: HttpServletRequest?, model: Model, response: HttpServletResponse?): String? {
-        model.addAttribute("version", AppVersion.getVersion())
+        model.addAttribute("version", AppVersion.version)
         model.addAttribute("pfx", PLATFORMS)
         model.addAttribute("jar_map", getPanopsetJarValidationMap())
         model.addAttribute("installer_map", getInstallerValidationMap())

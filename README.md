@@ -49,3 +49,8 @@ Build the Panopset [src](https://github.com/panopset/src) project on your develo
 
 
 # [Deploy](docs/deploy.md)ment instructions
+
+
+## Desk version
+
+DeskPageController

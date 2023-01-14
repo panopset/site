@@ -2,6 +2,7 @@ package com.panopset.games.denebola.control
 
 import com.google.gson.Gson
 import com.panopset.compat.Jsonop
+import com.panopset.compat.Randomop
 import com.panopset.games.denebola.Toard
 import com.panopset.games.denebola.Tronk
 import com.panopset.site.*
@@ -65,21 +66,12 @@ class DenebolaController(private val config: Config, private val panBase: PanBas
         return "denebola/denebola_config"
     }
 
-    private fun getRandomHexString(numchars: Int): String? {
-        val r = Random()
-        val sb = StringBuffer()
-        while (sb.length < numchars) {
-            sb.append(Integer.toHexString(r.nextInt()))
-        }
-        return sb.toString().substring(0, numchars)
-    }
-
     private fun createInitialToard(sessionId: String): Toard {
         val toard = Toard()
         val tronk = Tronk()
         tronk.id = UUID.randomUUID().toString()
         tronk.owner = sessionId
-        val random3hex = getRandomHexString(3)
+        val random3hex = Randomop.getRandomHexString(3)
         tronk.fill = "#${random3hex}"
         tronk.stroke = "#f0f"
         tronk.x = 120
