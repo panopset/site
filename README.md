@@ -32,6 +32,8 @@ Adjust for your target environment:
 
 ## Build Requirements
 
+* Java 17
+
 This project maintains (for now) both gradle and maven build configurations.
 
 * Gradle 7.5.1 
