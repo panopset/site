@@ -55,4 +55,9 @@ class SiteController {
     fun lynx(model: Model?, response: HttpServletResponse?): String? {
         return "lynx"
     }
+
+    @GetMapping(*["/cfg", "/cfg.htm", "/cfg.html"])
+    fun cfg(model: Model?, response: HttpServletResponse?): String? {
+        return "personalize"
+    }
 }

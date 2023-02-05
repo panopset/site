@@ -9,6 +9,17 @@ function toggleScreens() {
     }
 }
 
+function updateScreens() {
+    vbgd000 = $('#bgdColorInp').val()
+    document.documentElement.style.setProperty('--bgd000', vbgd000);
+    vfgd000 = $('#fgdColorInp').val()
+    document.documentElement.style.setProperty('--fgd000', vfgd000);
+}
+
+function resetScreens() {
+    setScreen()
+}
+
 function setScreen() {
     scz = "screen"
     document.documentElement.style.setProperty('--bgd000', '#000');

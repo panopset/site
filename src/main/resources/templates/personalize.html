@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head profile="http://www.w3.org/2005/10/profile">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panopset Configuration</title>
+    <link rel="icon" type="image/png" href="../../../../raw/images/logo16.png" th:href="'images/logo16.png'" >
+    <link rel="shortcut icon" href="../../../../raw/images/favicon-32.png" th:href="'images/favicon-32.png'" >
+    <link rel="stylesheet" href="../../../../raw/css/pansite.css" th:href="'/css/pansite.css'" type="text/css">
+    <script src="../../../../raw/js/jquery.js" th:src="'/js/jquery.js'"></script>
+    <script src="../../../../raw/js/pansite.js" th:src="'/js/pansite.js'"></script>
+    <script src="../../../../raw/js/clock.js" th:src="'/js/clock.js'"></script>
+</head>
+<body>
+
+<div th:replace="fragments/nav :: menuBarFragment">
+    <nav class="menuBar">
+        <ul class="pad0">
+            <li><div class="menuSeparator">&nbsp;</div></li>
+            <li><div class="menuSeparator">&nbsp;</div></li>
+            <li class="padLeft linkDown"><a href="#">web <span>&#8227;</span></a>
+                <ul>
+                    <li><a href="./flywheel">flywheel</a></li>
+                    <li><a href="./scrambler">scrambler</a></li>
+                    <li><a href="./denebola">denebola</a></li>
+                </ul>
+            </li>
+            <li><div class="menuSeparator">&nbsp;</div></li>
+            <li>
+                <button id="ptoggle" onclick="toggleScreens()">printer</button>
+            </li>
+            <li style="float: right">
+                <span id="clock"></span><script>startTime();</script>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<div class="inset">
+
+    <h1>Personalize</h1>
+
+    <button id="resetCfg" onclick="resetScreens()">reset</button>
+    <label for="bgdColorInp">Background:</label>
+    <input onchange="updateScreens()" type="color" id="bgdColorInp" name="favcolor" value="#000000">
+    <label for="fgdColorInp">Foreground:</label>
+    <input onchange="updateScreens()" type="color" id="fgdColorInp" name="favcolor" value="#22ff44">
+
+</div>
+<div th:replace="fragments/footer :: google_stats" th:remove="tag"></div>
+</body>
+</html>
