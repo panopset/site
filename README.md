@@ -5,9 +5,25 @@ Panopset website source code.
 
 # Development PC Requirements
 
+## Linux
 
-Tested on a recent Linux mint system.
+Linux Mint is the recommended OS.  You can easily set up nginx there and run things locally much like in production.
 
+## Windows
+
+It might be easier to use Apache on Windows, than nginx.
+
+Install Apache here, for deploystatic.cmd and runStaticApache.cmd to work without modification.
+
+    %USERPROFILE%\Documents\apps\servers\apache\Apache24
+
+
+Make these modifications to C:/Users/karldi/Documents/apps/servers/apache/Apache24/conf/httpd.conf:
+
+    Define SRVROOT "%USERPROFILE%/Documents/apps/servers/apache/Apache24"
+    Listen 8089
+
+Replace %USERPROFILE% with your home directory, unfortunately httpd.conf won't recognize your windows variables.
 
 ## Environment Variables
 
