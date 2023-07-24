@@ -6,6 +6,7 @@ import com.panopset.flywheel.LineFeedRules
 import com.panopset.flywheel.ReflectionInvoker
 import com.panopset.flywheel.samples.FlywheelSamples
 import com.panopset.web.FwInput
+import jakarta.servlet.http.HttpServletResponse
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody
 import java.io.IOException
 import java.util.logging.Level
 import java.util.logging.Logger
-import javax.servlet.http.HttpServletResponse
 
 @Controller
 class FlywheelController {

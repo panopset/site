@@ -9,6 +9,8 @@ import com.panopset.site.*
 import com.panopset.site.control.Config
 import com.panopset.site.control.PanBase
 import com.panopset.site.control.SystemPropertyMap
+import jakarta.servlet.http.HttpServletRequest
+import jakarta.servlet.http.HttpServletResponse
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -16,8 +18,6 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import java.util.*
-import javax.servlet.http.HttpServletRequest
-import javax.servlet.http.HttpServletResponse
 
 @Controller
 class DenebolaController(private val config: Config, private val panBase: PanBase, private val systemPropertyMap: SystemPropertyMap) {
