@@ -1,6 +1,8 @@
 package com.panopset.site.control
 
 import com.panopset.compat.JavaVersionChart
+import jakarta.servlet.http.HttpServletRequest
+import jakarta.servlet.http.HttpServletResponse
 import org.springframework.http.*
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -11,8 +13,6 @@ import org.springframework.web.util.UriComponentsBuilder
 import java.net.URI
 import java.net.URISyntaxException
 import java.util.*
-import javax.servlet.http.HttpServletRequest
-import javax.servlet.http.HttpServletResponse
 
 
 @Controller

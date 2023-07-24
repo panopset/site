@@ -1,12 +1,12 @@
 package com.panopset.site.control
 
 import com.panopset.compat.*
+import jakarta.servlet.http.HttpServletRequest
+import jakarta.servlet.http.HttpServletResponse
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
 import java.util.*
-import javax.servlet.http.HttpServletRequest
-import javax.servlet.http.HttpServletResponse
 
 @Controller
 class DeskPageController(private val config: Config) {
@@ -15,9 +15,9 @@ class DeskPageController(private val config: Config) {
     val USERPATHSEP = "userpathsep"
     val PLATFORMS = arrayOf("linux", "mac", "win")
     val INSTALLERS = arrayOf(
-        arrayOf("linux", String.format("panopset_%s-1_amd64.deb", "1.2.3")),
-        arrayOf("mac", String.format("panopset-%s.dmg", "1.2.3")),
-        arrayOf("win", String.format("panopset-%s.msi", "1.2.3"))
+        arrayOf("linux", String.format("panopset_%s-1_amd64.deb", "1.2.4")),
+        arrayOf("mac", String.format("panopset-%s.dmg", "1.2.4")),
+        arrayOf("win", String.format("panopset-%s.msi", "1.2.4"))
     )
 
     @GetMapping(*["/desk", "/desk.htm", "/desk.html"])
