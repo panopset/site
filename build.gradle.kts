@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "com.panopset"
-version = "1.2.4"
+version = "1.2.5"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 configurations {
@@ -33,7 +33,7 @@ dependencies {
 	implementation("org.springframework.session:spring-session-core")
 	implementation("redis.clients:jedis:4.4.3")
 	implementation("org.springframework.boot:spring-boot-configuration-processor")
-	implementation("com.panopset:flywheel:1.2.4")
+	implementation("com.panopset:flywheel:1.2.5")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")

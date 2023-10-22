@@ -28,7 +28,7 @@ class DeskPageController(private val config: Config) {
 
     @GetMapping(*["/download", "/download.htm", "/download.html"])
     fun download(request: HttpServletRequest?, model: Model, response: HttpServletResponse?): String? {
-        model.addAttribute("version", AppVersion.version)
+        model.addAttribute("version", AppVersion.getVersion())
         model.addAttribute("pfx", PLATFORMS)
         model.addAttribute("jar_map", getPanopsetJarValidationMap())
         model.addAttribute("installer_map", getInstallerValidationMap())

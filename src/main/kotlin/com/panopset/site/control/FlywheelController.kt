@@ -31,12 +31,14 @@ class FlywheelController {
 
     @PostMapping("/af")
     fun getResult(@RequestBody fwInput: FwInput, response: HttpServletResponse?): ResponseEntity<String?>? {
-        var result: String
+        var result: String = "Input not found."
         val listParam = Stringop.stringToList(fwInput.listStr)
         try {
-            result = FlywheelListDriver.Builder(listParam, fwInput.template)
-                .withLineFeedRules(LineFeedRules(fwInput.lineBreakStr, fwInput.listBreakStr))
-                .withTokens(fwInput.tokens).withSplitz(fwInput.splitz).build().output
+                if (!fwInput.template.isNullOrBlank()) {
+                    result = FlywheelListDriver.Builder(listParam, fwInput.template?:"")
+                        .withLineFeedRules(LineFeedRules(fwInput.lineBreakStr, fwInput.listBreakStr))
+                        .withTokens(fwInput.tokens).withSplitz(fwInput.splitz).build().output
+                }
         } catch (e: IOException) {
             Logger.getAnonymousLogger().log(Level.SEVERE, "IOException in /af POST", e)
             result = e.message ?: "Unknown error in af POST occurred, see server logs."
