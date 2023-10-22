@@ -15,9 +15,9 @@ class DeskPageController(private val config: Config) {
     val USERPATHSEP = "userpathsep"
     val PLATFORMS = arrayOf("linux", "mac", "win")
     val INSTALLERS = arrayOf(
-        arrayOf("linux", String.format("panopset_%s-1_amd64.deb", "1.2.4")),
-        arrayOf("mac", String.format("panopset-%s.dmg", "1.2.4")),
-        arrayOf("win", String.format("panopset-%s.msi", "1.2.4"))
+        arrayOf("linux", String.format("panopset_%s-1_amd64.deb", "1.2.5")),
+        arrayOf("mac", String.format("panopset-%s.dmg", "1.2.5")),
+        arrayOf("win", String.format("panopset-%s.msi", "1.2.5"))
     )
 
     @GetMapping(*["/desk", "/desk.htm", "/desk.html"])
